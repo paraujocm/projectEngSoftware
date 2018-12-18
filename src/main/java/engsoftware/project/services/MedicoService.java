@@ -1,7 +1,6 @@
 package engsoftware.project.services;
 
 import engsoftware.project.models.Medico;
-import engsoftware.project.models.WorkTime;
 import engsoftware.project.repositories.MedicoRepoI;
 import engsoftware.project.repositories.WorkTimeRepoI;
 import engsoftware.project.services.filters.Medico.FilterObjectMedico;
@@ -82,13 +81,4 @@ public class MedicoService implements  MedicoServiceI{
         return Optional.empty();
     }
 
-    @Override
-    public Boolean isAvailable (String nameMedico, WorkTime workTime){
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByName(nameMedico);
-        Optional<WorkTime> workTimeOptional=this.workTimeRepoI.findByDay(workTime);
-        if(medicoOptional.isPresent() && workTimeOptional.isPresent()){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
 }

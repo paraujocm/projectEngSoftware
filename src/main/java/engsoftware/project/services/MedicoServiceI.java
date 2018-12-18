@@ -23,5 +23,4 @@ public interface MedicoServiceI {
 
     Optional<Medico> saveMedico (String nr_utente_saude);
 
-    Boolean isAvailable (String nameMedico, WorkTime workTime);
 }
