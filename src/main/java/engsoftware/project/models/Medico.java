@@ -1,11 +1,9 @@
 package engsoftware.project.models;
 
 import lombok.*;
-import org.hibernate.type.LocalDateTimeType;
 
 import javax.persistence.*;
-import java.time.DayOfWeek;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,11 +75,11 @@ public class Medico extends BaseModel  {
         medico.removeMedico(medico);
     }
 
-    public boolean trabalha (WorkTime workTime){
-        for(WorkTime workTimeMedico:this.getWorkTimes()){
-            if(workTimeMedico.getDay().equals(workTime.getDay())){
-                if (workTimeMedico.getStart().isBefore(workTime.getStart())){
-                    if (workTimeMedico.getEnd().isAfter(workTime.getEnd())){
+    public boolean trabalha (LocalDateTime dataConsulta){
+        for(WorkTime horarioActual:this.getWorkTimes()){
+            if(horarioActual.getDay().equals(dataConsulta.getDayOfWeek())){
+                if (horarioActual.getStart().isBefore(dataConsulta.toLocalTime())){
+                    if (horarioActual.getEnd().isAfter(dataConsulta.toLocalTime())){
                         return true;
                     }
                 }
@@ -90,16 +88,18 @@ public class Medico extends BaseModel  {
         return false;
     }
 
-    public boolean disponivel (WorkTime workTime){
+    public boolean disponivel (LocalDateTime dataConsulta){
         for(Consulta consultaMedico:this.getConsultas()){
-            if(consultaMedico.getHorario().getDay().equals(workTime.getDay())){
-                if (consultaMedico.getHorario().getStart().equals(workTime.getStart())) {
+            if(consultaMedico.getHorario().getDayOfWeek().equals(dataConsulta.getDayOfWeek())){
+                if (consultaMedico.getHorario().equals(dataConsulta)) {
                     return false;
                 }
-                if (consultaMedico.getHorario().getStart().withMinute(30).isAfter(workTime.getStart())){
+                if(consultaMedico.getFimExpectavel().toLocalTime().isAfter(dataConsulta.toLocalTime()))
+                {
                     return false;
                 }
-                if(workTime.getStart().withMinute(30).isAfter(consultaMedico.getHorario().getStart())){
+                if(consultaMedico.getHorario().toLocalTime().isBefore(dataConsulta.toLocalTime().plusMinutes(30)))
+                {
                     return false;
                 }
             }

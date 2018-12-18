@@ -4,7 +4,6 @@ package engsoftware.project.services;
 import engsoftware.project.models.Consulta;
 import engsoftware.project.models.Medico;
 import engsoftware.project.models.Paciente;
-import engsoftware.project.models.WorkTime;
 import engsoftware.project.repositories.ConsultaRepoI;
 import engsoftware.project.repositories.MedicoRepoI;
 import engsoftware.project.repositories.PacienteRepoI;
@@ -87,13 +86,16 @@ public class ConsultaService implements ConsultaServiceI {
     }
 
     @Override
-    public Optional<Consulta> saveConsulta(Medico medico, Consulta consulta, String nr_utente_saude) {
+    public Optional<Consulta> saveConsulta( Consulta consulta, String nr_utente_saude, String nameMedico) {
         Optional<Paciente> pacienteOptional = this.pacienteRepoI.findByNr_utente_saude(nr_utente_saude);
-        if (pacienteOptional.isPresent()) {
+        Optional<Medico> medicoOptional = this.medicoRepoI.findByName(nameMedico);
+        if (pacienteOptional.isPresent() && medicoOptional.isPresent())  {
             Paciente paciente = pacienteOptional.get();
+            Medico medico = medicoOptional.get();
             if (medico.addConsutaToMedico(consulta)) {
                 paciente.addConsutaToPaciente(consulta);
                 pacienteRepoI.save(paciente);
+                medicoRepoI.save(medico);
                 return consultaRepoI.findById(consulta.getId());
             }
 

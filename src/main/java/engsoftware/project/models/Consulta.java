@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,12 +28,14 @@ public class Consulta extends BaseModel {
     @ToString.Exclude
     private Paciente paciente;
 
-    private WorkTime horario;
+    private LocalDateTime horario;
+    private LocalDateTime fimExpectavel;
     private Especialidade tipo;
 
-    public Consulta ( Paciente nr_utente, WorkTime horario, Especialidade tipo, Medico medico) {
+    public Consulta ( Paciente nr_utente, LocalDateTime horario, Especialidade tipo, Medico medico) {
         this.paciente=nr_utente;
         this.horario=horario;
+        this.fimExpectavel=horario.plusMinutes(30);
         this.tipo=tipo;
         this.medico=medico;
     }

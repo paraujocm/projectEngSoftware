@@ -2,7 +2,6 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Medico;
 import engsoftware.project.repositories.MedicoRepoI;
-import engsoftware.project.repositories.WorkTimeRepoI;
 import engsoftware.project.services.filters.Medico.FilterObjectMedico;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,6 @@ import java.util.Set;
 public class MedicoService implements  MedicoServiceI{
 
     private MedicoRepoI medicoRepoI;
-
-    private WorkTimeRepoI workTimeRepoI;
 
     private MedicoFilterService medicoFilterService;
 

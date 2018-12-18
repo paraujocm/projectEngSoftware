@@ -46,10 +46,10 @@ public class ConsultaController {
         return consulta;
     }*/
 
-    @PostMapping(value = "/{nr_utente_saude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, Medico medico, @PathVariable("nr_utente_saude") String nr_utente_saude){
+    @PostMapping(value = "/{nr_utente_saude}/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nr_utente_saude") String nr_utente_saude, @PathVariable("nameMedico") String nameMedico){
         logger.info(consulta.toString()+" "+nr_utente_saude);
-        Optional<Consulta> consultaOptional= consultaService.saveConsulta(medico, consulta, nr_utente_saude);
+        Optional<Consulta> consultaOptional= consultaService.saveConsulta(consulta, nr_utente_saude, nameMedico);
         if(consultaOptional.isPresent()){
             return ResponseEntity.ok(consultaOptional.get());
         }

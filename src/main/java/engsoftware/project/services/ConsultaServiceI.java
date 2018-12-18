@@ -3,7 +3,6 @@ package engsoftware.project.services;
 import engsoftware.project.models.Consulta;
 import engsoftware.project.models.Medico;
 import engsoftware.project.models.Paciente;
-import engsoftware.project.models.WorkTime;
 import engsoftware.project.services.filters.Consulta.FilterObjectConsulta;
 
 import java.util.Optional;
@@ -25,6 +24,6 @@ public interface ConsultaServiceI {
 
         Consulta save(Consulta consulta);
 
-        Optional<Consulta> saveConsulta(Medico medico, Consulta consulta, String nr_utente_saude);
+        Optional<Consulta> saveConsulta( Consulta consulta, String nr_utente_saude, String nameMedico);
 
 }
