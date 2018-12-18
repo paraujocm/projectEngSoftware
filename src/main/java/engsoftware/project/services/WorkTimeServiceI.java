@@ -3,6 +3,7 @@ package engsoftware.project.services;
 import engsoftware.project.models.Medico;
 import engsoftware.project.models.WorkTime;
 
+import java.time.DayOfWeek;
 import java.util.Optional;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ public interface WorkTimeServiceI {
 
     Set<WorkTime> getSetWorkTime();
 
-    Optional<WorkTime> findByDay(WorkTime dayOfWeek);
+    Iterable<WorkTime> findByDay(DayOfWeek dayOfWeek);
 
     Optional<WorkTime> findById(Long id);
 

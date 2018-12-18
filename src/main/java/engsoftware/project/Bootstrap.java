@@ -59,33 +59,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     }
 
 
-                /*engSoft.addStudent(st1);
-                engSoft.addStudent(st2);
-                engSoft.addStudent(st3);
-
-            logger.debug(engSoft.toString());
-
-
-            for(Course course:courses){
-                informatica.addCourse(course);
-            }
-
-
-
-            degreeRepo.save(civil);
-            degreeRepo.save(informatica);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-    }
-    }
-*/
-
     private Set<Medico> createMedicosFromFile() throws IOException {
         Set<Medico> medicos=new HashSet<>();
         String line;
