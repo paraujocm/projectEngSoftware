@@ -1,12 +1,10 @@
 package engsoftware.project.controllers;
 
 import engsoftware.project.models.Consulta;
-import engsoftware.project.models.Medico;
 import engsoftware.project.models.Paciente;
 import engsoftware.project.services.ConsultaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,8 +16,11 @@ import java.util.Optional;
 @RequestMapping("/consulta")
 public class ConsultaController {
 
-    @Autowired
     private ConsultaService consultaService;
+
+    public ConsultaController(ConsultaService consultaService) {
+        this.consultaService = consultaService;
+    }
 
     private Logger logger= LoggerFactory.getLogger(ConsultaController.class);
 
