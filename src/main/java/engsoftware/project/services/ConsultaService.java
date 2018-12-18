@@ -26,14 +26,11 @@ public class ConsultaService implements ConsultaServiceI {
 
     private PacienteRepoI pacienteRepoI;
 
-    private WorkTimeServiceI workTimeRepoI;
-
-    public ConsultaService(ConsultaFilterService consultaFilterService, ConsultaRepoI consultaRepoI, MedicoRepoI medicoRepoI, PacienteRepoI pacienteRepoI, WorkTimeServiceI workTimeRepoI) {
+    public ConsultaService(ConsultaFilterService consultaFilterService, ConsultaRepoI consultaRepoI, MedicoRepoI medicoRepoI, PacienteRepoI pacienteRepoI) {
         this.consultaFilterService = consultaFilterService;
         this.consultaRepoI = consultaRepoI;
         this.medicoRepoI = medicoRepoI;
         this.pacienteRepoI = pacienteRepoI;
-        this.workTimeRepoI = workTimeRepoI;
     }
 
     @Override

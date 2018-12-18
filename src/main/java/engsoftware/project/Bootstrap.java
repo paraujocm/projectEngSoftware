@@ -1,6 +1,5 @@
 package engsoftware.project;
 
-import engsoftware.project.models.Consulta;
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
 import engsoftware.project.models.Paciente;
