@@ -94,6 +94,7 @@ public class ConsultaService implements ConsultaServiceI {
             if (medico.addConsutaToMedico(consulta)) {
                 paciente.addConsutaToPaciente(consulta);
                 pacienteRepoI.save(paciente);
+                //jhgavfbkdf
                 return consultaRepoI.findById(consulta.getId());
             }
 
