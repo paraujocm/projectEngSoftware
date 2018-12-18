@@ -1,6 +1,7 @@
 package engsoftware.project.controllers;
 
 import engsoftware.project.models.Consulta;
+import engsoftware.project.models.Medico;
 import engsoftware.project.models.Paciente;
 import engsoftware.project.services.ConsultaService;
 import org.slf4j.Logger;
@@ -46,9 +47,9 @@ public class ConsultaController {
     }*/
 
     @PostMapping(value = "/{nr_utente_saude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nr_utente_saude") String nr_utente_saude){
+    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, Medico medico, @PathVariable("nr_utente_saude") String nr_utente_saude){
         logger.info(consulta.toString()+" "+nr_utente_saude);
-        Optional<Consulta> consultaOptional= consultaService.saveConsulta(consulta, nr_utente_saude);
+        Optional<Consulta> consultaOptional= consultaService.saveConsulta(medico, consulta, nr_utente_saude);
         if(consultaOptional.isPresent()){
             return ResponseEntity.ok(consultaOptional.get());
         }

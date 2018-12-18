@@ -38,24 +38,24 @@ public class ConsultaService implements ConsultaServiceI {
     }
 
     @Override
-    public Set<Consulta> getSetConsulta(){
-        Set<Consulta> consultas=new HashSet<>();
-        for(Consulta consulta:this.consultaRepoI.findAll()){
+    public Set<Consulta> getSetConsulta() {
+        Set<Consulta> consultas = new HashSet<>();
+        for (Consulta consulta : this.consultaRepoI.findAll()) {
             consultas.add(consulta);
         }
         return consultas;
     }
 
     @Override
-    public Set<Consulta> getFilteredConsulta(FilterObjectConsulta filterObjectConsulta){
-        return consultaFilterService.filterConsultas(findAll(),filterObjectConsulta);
+    public Set<Consulta> getFilteredConsulta(FilterObjectConsulta filterObjectConsulta) {
+        return consultaFilterService.filterConsultas(findAll(), filterObjectConsulta);
     }
 
 
     @Override
-    public Set<Consulta> findAll(){
-        Set<Consulta> consultas=new HashSet<>();
-        for(Consulta consulta:this.consultaRepoI.findAll()){
+    public Set<Consulta> findAll() {
+        Set<Consulta> consultas = new HashSet<>();
+        for (Consulta consulta : this.consultaRepoI.findAll()) {
             consultas.add(consulta);
         }
         return Collections.unmodifiableSet(consultas);
@@ -82,30 +82,25 @@ public class ConsultaService implements ConsultaServiceI {
     }
 
     @Override
-    public Consulta save(Consulta consulta){
+    public Consulta save(Consulta consulta) {
         return this.consultaRepoI.save(consulta);
     }
 
     @Override
-    public Optional<Consulta> saveConsulta(Consulta consulta, String nr_utente_saude) {
-        Optional<Paciente> pacienteOptional=this.pacienteRepoI.findByNr_utente_saude(nr_utente_saude);
-        if(pacienteOptional.isPresent()){
-            Paciente paciente=pacienteOptional.get();
+    public Optional<Consulta> saveConsulta(Medico medico, Consulta consulta, String nr_utente_saude) {
+        Optional<Paciente> pacienteOptional = this.pacienteRepoI.findByNr_utente_saude(nr_utente_saude);
+        if (pacienteOptional.isPresent()) {
+            Paciente paciente = pacienteOptional.get();
+            if (medico.addConsutaToMedico(consulta)) {
+                paciente.addConsutaToPaciente(consulta);
+                pacienteRepoI.save(paciente);
+                return consultaRepoI.findById(consulta.getId());
+            }
 
-            paciente.addConsutaToPaciente(consulta);
-            pacienteRepoI.save(paciente);
-            return consultaRepoI.findById(consulta.getId());
         }
         return Optional.empty();
     }
 
-    @Override
-    public Boolean isAvailable (String nameMedico, WorkTime workTime){
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByName(nameMedico);
-        Optional<WorkTime> workTimeOptional=this.workTimeRepoI.findByDay(workTime);
-        if(medicoOptional.isPresent() && workTimeOptional.isPresent()){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
+
 }
+

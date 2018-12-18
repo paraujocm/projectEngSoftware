@@ -1,6 +1,7 @@
 package engsoftware.project.models;
 
 import lombok.*;
+import org.hibernate.type.LocalDateTimeType;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -42,9 +43,16 @@ public class Medico extends BaseModel  {
     }
 
     // add consulta a um medico
-    public void addConsutaToMedico(Consulta consulta){
-        consultas.add(consulta);
-        consulta.setMedico(this);
+    public boolean addConsutaToMedico(Consulta consulta){
+        if(trabalha(consulta.getHorario()) && disponivel(consulta.getHorario()))
+        {
+            consultas.add(consulta);
+            consulta.setMedico(this);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     // add worktime a um medico
@@ -69,11 +77,34 @@ public class Medico extends BaseModel  {
         medico.removeMedico(medico);
     }
 
-    public boolean isAvalible (WorkTime workTime){
-        for(WorkTime workTime1:this.getWorkTimes()){
-            if(workTime1.getDay().equals(workTime.getDay())){
-
+    public boolean trabalha (WorkTime workTime){
+        for(WorkTime workTimeMedico:this.getWorkTimes()){
+            if(workTimeMedico.getDay().equals(workTime.getDay())){
+                if (workTimeMedico.getStart().isBefore(workTime.getStart())){
+                    if (workTimeMedico.getEnd().isAfter(workTime.getEnd())){
+                        return true;
+                    }
+                }
             }
         }
+        return false;
     }
+
+    public boolean disponivel (WorkTime workTime){
+        for(Consulta consultaMedico:this.getConsultas()){
+            if(consultaMedico.getHorario().getDay().equals(workTime.getDay())){
+                if (consultaMedico.getHorario().getStart().equals(workTime.getStart())) {
+                    return false;
+                }
+                if (consultaMedico.getHorario().getStart().withMinute(30).isAfter(workTime.getStart())){
+                    return false;
+                }
+                if(workTime.getStart().withMinute(30).isAfter(consultaMedico.getHorario().getStart())){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

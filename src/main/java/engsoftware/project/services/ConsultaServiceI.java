@@ -25,7 +25,6 @@ public interface ConsultaServiceI {
 
         Consulta save(Consulta consulta);
 
-        Optional<Consulta> saveConsulta(Consulta consulta, String nr_utente_saude);
+        Optional<Consulta> saveConsulta(Medico medico, Consulta consulta, String nr_utente_saude);
 
-        Boolean isAvailable (String nameMedico, WorkTime workTime);
 }

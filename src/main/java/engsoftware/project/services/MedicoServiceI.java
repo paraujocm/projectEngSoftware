@@ -1,7 +1,6 @@
 package engsoftware.project.services;
 
 import engsoftware.project.models.Medico;
-import engsoftware.project.models.WorkTime;
 import engsoftware.project.services.filters.Medico.FilterObjectMedico;
 
 import java.util.Optional;
