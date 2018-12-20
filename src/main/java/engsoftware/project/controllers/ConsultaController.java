@@ -37,16 +37,6 @@ public class ConsultaController {
         return courseDTOOptional.orElse(null);
     }
 
-    /*
-    // cria uma consulta e add ao paciente
-    @RequestMapping (value = "/{nr_utente_saude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Consulta createConsulta(@PathVariable ("nr_utente_saude") String nr_utente_saude, @RequestBody Consulta consulta){
-        Paciente paciente = consultaService.findByNr_utente_saude(nr_utente_saude).get();
-        paciente.addConsutaToPaciente(consulta);
-        consultaService.save(consulta);
-        return consulta;
-    }*/
-
     @PostMapping(value = "/{nr_utente_saude}/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nr_utente_saude") String nr_utente_saude, @PathVariable("nameMedico") String nameMedico){
         logger.info(consulta.toString()+" "+nr_utente_saude);
