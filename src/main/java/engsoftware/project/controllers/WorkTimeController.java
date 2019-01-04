@@ -19,6 +19,10 @@ public class WorkTimeController {
 
     private Logger logger= LoggerFactory.getLogger(ConsultaController.class);
 
+    public WorkTimeController(WorktimeService worktimeService) {
+        this.worktimeService = worktimeService;
+    }
+
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Iterable<WorkTime> getAllWorkTime(){

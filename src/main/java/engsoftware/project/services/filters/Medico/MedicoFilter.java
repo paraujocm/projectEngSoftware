@@ -1,6 +1,5 @@
 package engsoftware.project.services.filters.Medico;
 
-
 import engsoftware.project.models.Medico;
 import engsoftware.project.services.filters.FilterI;
 

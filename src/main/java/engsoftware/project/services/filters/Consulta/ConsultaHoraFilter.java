@@ -19,7 +19,7 @@ public class ConsultaHoraFilter implements ConsultaFilter {
         if(horaToFilter==null)return consultas;
 
         return consultas.stream()
-                .filter(consulta -> consulta.getHorario().getStart()==this.horaToFilter)
+                .filter(consulta -> consulta.getHorario().toLocalTime().equals(this.horaToFilter))
                 .collect(Collectors.toSet());
     }
 }

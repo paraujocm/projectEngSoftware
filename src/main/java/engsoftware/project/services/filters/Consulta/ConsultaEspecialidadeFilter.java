@@ -3,7 +3,6 @@ package engsoftware.project.services.filters.Consulta;
 import engsoftware.project.models.Consulta;
 import engsoftware.project.models.Especialidade;
 
-
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,7 @@ public class ConsultaEspecialidadeFilter implements ConsultaFilter{
         if(especialidadeToFilter==null)return consultas;
 
         return consultas.stream()
-                .filter(consulta -> consulta.getTipo()==this.especialidadeToFilter)
+                .filter(consulta -> consulta.getTipo().equals(this.especialidadeToFilter))
                 .collect(Collectors.toSet());
     }
 }

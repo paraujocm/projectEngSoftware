@@ -17,7 +17,7 @@ public class MedicoNomeFilter implements MedicoFilter {
         if(nomeToFilter==null)return medicos;
 
         return medicos.stream()
-                .filter(medico -> medico.getNome()==this.nomeToFilter)
+                .filter(medico -> medico.getNome().equals(this.nomeToFilter))
                 .collect(Collectors.toSet());
     }
 }

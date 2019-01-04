@@ -18,7 +18,7 @@ public class PacienteNomeFilter implements PacienteFilter {
         if(nomeToFilter==null)return pacientes;
 
         return pacientes.stream()
-                .filter(paciente -> paciente.getNome()==this.nomeToFilter)
+                .filter(paciente -> paciente.getNome().equals(this.nomeToFilter))
                 .collect(Collectors.toSet());
     }
 }

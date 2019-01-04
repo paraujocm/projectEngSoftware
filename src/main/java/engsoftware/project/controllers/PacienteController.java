@@ -35,25 +35,25 @@ public class PacienteController {
         return pacienteService.findById(id).get();
     }
 
-    @RequestMapping(value="/{nr_utente_saude}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value= "/{nrUtenteSaude}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public  @ResponseBody
-    Paciente getById(@PathVariable("nr_utente_saude") String nr_utente_saude){
-        return pacienteService.findByNr_utente_saude(nr_utente_saude).get();
+    Paciente getById(@PathVariable("nrUtenteSaude") String nrUtenteSaude){
+        return pacienteService.findByNrUtenteSaude(nrUtenteSaude).get();
     }
 
-    @PostMapping(value = "/{nr_utente_saude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente, @PathVariable("nr_utente_saude") String nr_utente_saude){
-        logger.info(paciente.toString()+" "+nr_utente_saude);
-        Optional<Paciente> pacienteOptional= pacienteService.savePaciente(nr_utente_saude);
+    @PostMapping(value = "/{nrUtenteSaude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente, @PathVariable("nrUtenteSaude") String nrUtenteSaude){
+        logger.info(paciente.toString()+" "+nrUtenteSaude);
+        Optional<Paciente> pacienteOptional= pacienteService.savePaciente(nrUtenteSaude);
         if(pacienteOptional.isPresent()){
             return ResponseEntity.ok(pacienteOptional.get());
         }
         return ResponseEntity.notFound().build();
     }
 
-    @RequestMapping (value = "/{nr_utente_saude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Paciente removePaciente(@PathVariable ("nr_utente_saude") String nr_utente_saude, @RequestBody Paciente paciente){
-        Paciente paciente1= pacienteService.findByNr_utente_saude(nr_utente_saude).get() ;
+    @RequestMapping (value = "/{nrUtenteSaude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Paciente removePaciente(@PathVariable ("nrUtenteSaude") String nrUtenteSaude, @RequestBody Paciente paciente){
+        Paciente paciente1= pacienteService.findByNrUtenteSaude(nrUtenteSaude).get() ;
         paciente1.removePaciente(paciente);
         return paciente;
     }

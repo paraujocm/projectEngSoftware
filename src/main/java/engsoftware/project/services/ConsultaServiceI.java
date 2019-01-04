@@ -20,10 +20,10 @@ public interface ConsultaServiceI {
 
         Optional<Medico> findByName(String nameMedico);
 
-        Optional<Paciente> findByNr_utente_saude(String nr_utente_saude);
+        Optional<Paciente> findByNrUtenteSaude(String nrUtenteSaude);
 
         Consulta save(Consulta consulta);
 
-        Optional<Consulta> saveConsulta( Consulta consulta, String nr_utente_saude, String nameMedico);
+        Optional<Consulta> saveConsulta( Consulta consulta, String nrUtenteSaude, String nameMedico);
 
 }

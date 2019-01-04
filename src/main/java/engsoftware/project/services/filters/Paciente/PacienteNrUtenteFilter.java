@@ -18,7 +18,7 @@ public class PacienteNrUtenteFilter implements PacienteFilter {
         if(nrUtenteToFilter==null)return pacientes;
 
         return pacientes.stream()
-                .filter(paciente -> paciente.getNr_utente_saude()==this.nrUtenteToFilter)
+                .filter(paciente -> paciente.getNrUtenteSaude().equals(this.nrUtenteToFilter))
                 .collect(Collectors.toSet());
     }
 }

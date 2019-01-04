@@ -4,9 +4,6 @@ import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.WorkTime;
 import lombok.Data;
 
-
-import java.time.LocalTime;
-
 @Data
 public class FilterObjectMedico {
     private String nome;

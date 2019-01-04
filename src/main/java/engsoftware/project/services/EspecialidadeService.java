@@ -18,7 +18,8 @@ public class EspecialidadeService implements EspecialidadeServiceI {
 
     private MedicoRepoI medicoRepoI;
 
-    public EspecialidadeService(EspecialidadeRepoI especialidadeRepoI, MedicoRepoI medicoRepoI) {
+    public EspecialidadeService(EspecialidadeFilterService especialidadeFilterService, EspecialidadeRepoI especialidadeRepoI, MedicoRepoI medicoRepoI) {
+        this.especialidadeFilterService = especialidadeFilterService;
         this.especialidadeRepoI = especialidadeRepoI;
         this.medicoRepoI = medicoRepoI;
     }
@@ -78,7 +79,7 @@ public class EspecialidadeService implements EspecialidadeServiceI {
             medicoRepoI.save(medico);
             return especialidadeRepoI.findByName(especialidade.getNome());
         }
-        return Optional.empty();
+        return Optional.of(especialidade);
 
     }
 

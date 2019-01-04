@@ -19,7 +19,7 @@ public class ConsultaMedicoFilter implements  ConsultaFilter{
         if(medicoToFilter==null)return consultas;
 
         return consultas.stream()
-                .filter(consulta -> consulta.getMedico()==this.medicoToFilter)
+                .filter(consulta -> consulta.getMedico().equals(this.medicoToFilter))
                 .collect(Collectors.toSet());
     }
 }

@@ -2,14 +2,9 @@ package engsoftware.project.models;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalUnit;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -32,8 +27,8 @@ public class Consulta extends BaseModel {
     private LocalDateTime fimExpectavel;
     private Especialidade tipo;
 
-    public Consulta ( Paciente nr_utente, LocalDateTime horario, Especialidade tipo, Medico medico) {
-        this.paciente=nr_utente;
+    public Consulta ( Paciente nrUtente, LocalDateTime horario, Especialidade tipo, Medico medico) {
+        this.paciente=nrUtente;
         this.horario=horario;
         this.fimExpectavel=horario.plusMinutes(30);
         this.tipo=tipo;

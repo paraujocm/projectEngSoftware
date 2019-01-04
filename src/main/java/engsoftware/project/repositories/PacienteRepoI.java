@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface PacienteRepoI extends CrudRepository<Paciente, Long> {
 
-    Optional<Paciente> findByNr_utente_saude(String nr_utente_saude);
+    Optional<Paciente> findByNrUtenteSaude(String nrUtenteSaude);
 
 }

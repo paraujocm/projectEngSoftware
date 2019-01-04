@@ -1,10 +1,7 @@
 package engsoftware.project.controllers;
 
-import engsoftware.project.models.Consulta;
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
-import engsoftware.project.models.Paciente;
-import engsoftware.project.repositories.EspecialidadeRepoI;
 import engsoftware.project.services.EspecialidadeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

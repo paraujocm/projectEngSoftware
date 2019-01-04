@@ -37,10 +37,10 @@ public class ConsultaController {
         return courseDTOOptional.orElse(null);
     }
 
-    @PostMapping(value = "/{nr_utente_saude}/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nr_utente_saude") String nr_utente_saude, @PathVariable("nameMedico") String nameMedico){
-        logger.info(consulta.toString()+" "+nr_utente_saude);
-        Optional<Consulta> consultaOptional= consultaService.saveConsulta(consulta, nr_utente_saude, nameMedico);
+    @PostMapping(value = "/{nrUtenteSaude}/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nrUtenteSaude") String nrUtenteSaude, @PathVariable("nameMedico") String nameMedico){
+        logger.info(consulta.toString()+" "+nrUtenteSaude);
+        Optional<Consulta> consultaOptional= consultaService.saveConsulta(consulta, nrUtenteSaude, nameMedico);
         if(consultaOptional.isPresent()){
             return ResponseEntity.ok(consultaOptional.get());
         }
@@ -48,9 +48,9 @@ public class ConsultaController {
     }
 
     //remove consuta from paciente
-    @RequestMapping (value = "/{nr_utente_saude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Consulta removeConsulta(@PathVariable ("nr_utente_saude") String nr_utente_saude, @RequestBody Consulta consulta){
-        Paciente paciente = consultaService.findByNr_utente_saude(nr_utente_saude).get();
+    @RequestMapping (value = "/{nrUtenteSaude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Consulta removeConsulta(@PathVariable ("nrUtenteSaude") String nrUtenteSaude, @RequestBody Consulta consulta){
+        Paciente paciente = consultaService.findByNrUtenteSaude(nrUtenteSaude).get();
         paciente.removeConsultaFromPaciente(consulta);
         consultaService.save(consulta);
         return consulta;

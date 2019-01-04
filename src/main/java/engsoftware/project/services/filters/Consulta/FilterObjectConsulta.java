@@ -8,7 +8,7 @@ import java.time.LocalTime;
 
 @Data
 public class FilterObjectConsulta {
-    private Paciente nr_utente;
+    private Paciente nrUtente;
     private Especialidade especialidade;
     private DayOfWeek dia;
     private LocalTime hora;

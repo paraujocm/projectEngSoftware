@@ -25,7 +25,7 @@ public class MedicoEspecialidadeFilter implements MedicoFilter {
         if(especialidadeToFilter==null)return medicos;
 
         return medicos.stream()
-                .filter(medico -> medico.getEspecialidades()==this.especialidadeToFilter)
+                .filter(medico -> medico.getEspecialidades().equals(this.especialidadeToFilter))
                 .collect(Collectors.toSet());
     }
 

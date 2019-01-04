@@ -6,20 +6,20 @@ import engsoftware.project.models.Paciente;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ConsultaNr_utenteFilter implements ConsultaFilter {
+public class ConsultaNrUtenteFilter implements ConsultaFilter {
 
-    private Paciente nr_utenteToFilter;
+    private Paciente nrUtenteToFilter;
 
-    public ConsultaNr_utenteFilter(Paciente nr_utenteToFilter) {
-        this.nr_utenteToFilter = nr_utenteToFilter;
+    public ConsultaNrUtenteFilter(Paciente nrUtenteToFilter) {
+        this.nrUtenteToFilter = nrUtenteToFilter;
     }
 
     @Override
     public Set<Consulta> filter(Set<Consulta> consultas) {
-        if(nr_utenteToFilter==null)return consultas;
+        if(nrUtenteToFilter ==null)return consultas;
 
         return consultas.stream()
-                .filter(consulta -> consulta.getPaciente()==this.nr_utenteToFilter)
+                .filter(consulta -> consulta.getPaciente().equals(this.nrUtenteToFilter))
                 .collect(Collectors.toSet());
     }
 }

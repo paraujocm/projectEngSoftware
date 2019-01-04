@@ -3,23 +3,34 @@ package engsoftware.project.services.filters.Medico;
 import engsoftware.project.models.Medico;
 import engsoftware.project.models.WorkTime;
 
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MedicoHoraInicioFilter implements MedicoFilter {
 
-    private WorkTime horaInicioToFilter;
+    private LocalTime horaInicioToFilter;
 
-    public MedicoHoraInicioFilter(WorkTime horaInicioToFilter) {
+    public MedicoHoraInicioFilter(LocalTime horaInicioToFilter) {
         this.horaInicioToFilter = horaInicioToFilter;
     }
 
     @Override
     public Set<Medico> filter(Set<Medico> medicos) {
         if(horaInicioToFilter==null)return medicos;
-
+/*
         return medicos.stream()
-                .filter(medico -> medico.getWorkTimes()==this.horaInicioToFilter)
-                .collect(Collectors.toSet());
+                .filter(medico -> medico.getWorkTimes().equals(this.horaInicioToFilter))
+                .collect(Collectors.toSet()); */
+
+        Set<Medico> filteredMedicos = new HashSet<>();
+        for (Medico medico : medicos) {
+            for(WorkTime workTime:medico.getWorkTimes()){
+                if(workTime.getEnd().isAfter(this.horaInicioToFilter)){
+                    filteredMedicos.add(medico);
+                }
+            }
+        }
+        return filteredMedicos;
     }
 }

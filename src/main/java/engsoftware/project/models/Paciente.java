@@ -27,12 +27,12 @@ public class Paciente extends BaseModel  {
     @Column(unique = true)
     private String nrUtenteSaude;
 
-    public Paciente(String nome, int idade, String nif, boolean problematico, String nr_utente_saude) {
+    public Paciente(String nome, int idade, String nif, boolean problematico, String nrUtenteSaude) {
         this.nome=nome;
         this.idade=idade;
         this.nif=nif;
         this.problematico=problematico;
-        this.nrUtenteSaude=nr_utente_saude;
+        this.nrUtenteSaude=nrUtenteSaude;
     }
 
     // add consulta a um paciente

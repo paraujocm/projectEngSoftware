@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ConsultaRepoI extends CrudRepository<Consulta, Long> {
 
-    Optional<Consulta> findById(Integer id);
+    Optional<Consulta> findById(long id);
 }

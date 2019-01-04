@@ -44,8 +44,8 @@ public class PacienteService implements PacienteServiceI {
     }
 
     @Override
-    public Optional<Paciente> findByNr_utente_saude(String nr_utente_saude) {
-        return pacienteRepoI.findByNr_utente_saude(nr_utente_saude);
+    public Optional<Paciente> findByNrUtenteSaude(String nrUtenteSaude) {
+        return pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
     }
 
     @Override
@@ -65,14 +65,14 @@ public class PacienteService implements PacienteServiceI {
 
 
     @Override
-    public Optional<Paciente> savePaciente(String nr_utente_saude) {
-        Optional<Paciente> pacienteOptional=this.pacienteRepoI.findByNr_utente_saude(nr_utente_saude);
+    public Optional<Paciente> savePaciente(String nrUtenteSaude) {
+        Optional<Paciente> pacienteOptional=this.pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
         if(pacienteOptional.isPresent()){
             Paciente paciente=pacienteOptional.get();
 
             paciente.addPaciente(paciente);
             pacienteRepoI.save(paciente);
-            return pacienteRepoI.findByNr_utente_saude(nr_utente_saude);
+            return pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
         }
         return Optional.empty();
     }

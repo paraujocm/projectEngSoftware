@@ -19,7 +19,7 @@ public class ConsultaDiaFilter implements ConsultaFilter{
         if(diaToFilter==null)return consultas;
 
         return consultas.stream()
-                .filter(consulta -> consulta.getHorario().getDay()==this.diaToFilter)
+                .filter(consulta -> consulta.getHorario().getDayOfWeek().equals(this.diaToFilter))
                 .collect(Collectors.toSet());
     }
 }

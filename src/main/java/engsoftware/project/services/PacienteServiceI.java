@@ -16,7 +16,7 @@ public interface PacienteServiceI {
 
     Optional<Paciente> findById(Long id);
 
-    Optional<Paciente> findByNr_utente_saude(String nr_utente_saude);
+    Optional<Paciente> findByNrUtenteSaude(String nr_utente_saude);
 
     Paciente save(Paciente paciente);
 

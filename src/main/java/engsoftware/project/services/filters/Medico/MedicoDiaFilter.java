@@ -6,7 +6,6 @@ import engsoftware.project.models.WorkTime;
 import java.time.DayOfWeek;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MedicoDiaFilter implements MedicoFilter {
 

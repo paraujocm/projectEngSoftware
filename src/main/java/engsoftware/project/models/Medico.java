@@ -27,10 +27,10 @@ public class Medico extends BaseModel  {
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "medico")
     private Set<WorkTime> workTimes=new HashSet<>();
 
-    public Medico(String nome, String email, String nr_telemovel, Especialidade especialidade) {
+    public Medico(String nome, String email, String nrTelemovel, Especialidade especialidade) {
         this.nome=nome;
         this.email=email;
-        this.nrTelemovel=nr_telemovel;
+        this.nrTelemovel=nrTelemovel;
         this.addEspecialidade(especialidade);
     }
 

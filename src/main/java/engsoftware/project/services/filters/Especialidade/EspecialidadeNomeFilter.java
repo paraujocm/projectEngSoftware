@@ -18,7 +18,7 @@ public class EspecialidadeNomeFilter implements EspecialidadeFilter {
         if(nomeToFilter==null)return especialidades;
 
         return especialidades.stream()
-                .filter(especialidade -> especialidade.getNome()==this.nomeToFilter)
+                .filter(especialidade -> especialidade.getNome().equals(this.nomeToFilter))
                 .collect(Collectors.toSet());
     }
 }
