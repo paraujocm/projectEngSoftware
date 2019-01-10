@@ -4,11 +4,13 @@ import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.WorkTime;
 import lombok.Data;
 
+import java.time.LocalTime;
+
 @Data
 public class FilterObjectMedico {
     private String nome;
     private Especialidade especialidade;
-    private WorkTime dia;
-    private WorkTime horaInicio;
-    private WorkTime horaFim;
+    private LocalTime dia;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
 }
