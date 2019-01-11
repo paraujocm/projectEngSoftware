@@ -93,6 +93,7 @@ public class ConsultaService implements ConsultaServiceI {
                 paciente.addConsutaToPaciente(consulta);
                 pacienteRepoI.save(paciente);
                 medicoRepoI.save(medico);
+                consultaRepoI.save(consulta);
                 return consultaRepoI.findById(consulta.getId());
             }
 
@@ -101,5 +102,17 @@ public class ConsultaService implements ConsultaServiceI {
     }
 
 
+    @Override
+    public Optional<Consulta> removeConsulta (Long id) {
+        Optional<Consulta> consultaOptional=this.consultaRepoI.findById(id);
+        if(consultaOptional.isPresent()){
+            Consulta consulta= consultaOptional.get();
+
+            consultaRepoI.delete(consulta);
+            return consultaRepoI.findById(id);
+        }
+        return Optional.empty();
+
+    }
 }
 

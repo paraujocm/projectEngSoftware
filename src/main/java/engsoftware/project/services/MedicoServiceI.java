@@ -2,6 +2,7 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Medico;
 import engsoftware.project.services.filters.Medico.FilterObjectMedico;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 import java.util.Set;
@@ -20,6 +21,8 @@ public interface MedicoServiceI {
 
     Medico save(Medico medico);
 
-    Optional<Medico> saveMedico (String nr_utente_saude);
+    ResponseEntity<Medico> saveMedico (Medico medico);
+
+    Optional<Medico> removeMedico (String nameMedico);
 
 }

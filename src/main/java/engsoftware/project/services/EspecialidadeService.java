@@ -83,4 +83,20 @@ public class EspecialidadeService implements EspecialidadeServiceI {
 
     }
 
+    @Override
+    public Optional<Especialidade> removeEspecialidade (String nameEspecialidade) {
+        Optional<Especialidade> especialidadeOptional=this.especialidadeRepoI.findByNome(nameEspecialidade);
+        if(especialidadeOptional.isPresent()){
+            Especialidade especialidade= especialidadeOptional.get();
+
+            Medico medico= especialidade.getMedico();
+            medico.removeEspecialidadeToMedico(especialidade);
+            medicoRepoI.save(medico);
+            especialidadeRepoI.delete(especialidade);
+            return especialidadeRepoI.findByNome(especialidade.getNome());
+        }
+        return Optional.empty();
+
+    }
+
 }

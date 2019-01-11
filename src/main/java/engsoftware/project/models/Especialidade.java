@@ -13,7 +13,7 @@ public class Especialidade extends BaseModel  {
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @ManyToOne
+    @OneToOne
     private Medico medico;
 
     private String nome;

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.ManyToOne;
 import java.util.Optional;
 
 @Controller
@@ -39,10 +40,26 @@ public class MedicoController {
         return medicoService.findByName(name).get();
     }
 
-    @PostMapping(value = "/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Medico> saveMedico(@RequestBody Medico medico, @PathVariable("nameMedico") String nameMedico){
-        logger.info(medico.toString()+" "+nameMedico);
-        Optional<Medico> medicoOptional= medicoService.saveMedico(nameMedico);
+//    @PostMapping(value = "/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Medico> saveMedico(@RequestBody Medico medico, @PathVariable("nameMedico") String nameMedico){
+//        logger.info(medico.toString()+" "+nameMedico);
+//        Optional<Medico> medicoOptional= medicoService.saveMedico(nameMedico);
+//        if(medicoOptional.isPresent()){
+//            return ResponseEntity.ok(medicoOptional.get());
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+
+    @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Medico> savePaciente(@RequestBody Medico medico){
+        return medicoService.saveMedico(medico);
+    }
+
+
+    @PostMapping(value = "/remove/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Medico> removeMedico(@PathVariable("nameMedico") String nameMedico){
+        //logger.info(especialidade.toString()+" "+nameMedico);
+        Optional<Medico> medicoOptional= medicoService.removeMedico(nameMedico);
         if(medicoOptional.isPresent()){
             return ResponseEntity.ok(medicoOptional.get());
         }

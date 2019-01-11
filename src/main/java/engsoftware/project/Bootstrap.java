@@ -47,19 +47,31 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        Especialidade dentista= new Especialidade("Dentista", 30);
-        Especialidade geral= new Especialidade("Clinica Geral", 30);
+        Set<Especialidade> especialidade1 = new HashSet<>();
+        Especialidade dentista= new Especialidade("Dentista", 35);
+        especialidade1.add(dentista);
+        Set<Especialidade> especialidade2 = new HashSet<>();
+        Especialidade geral= new Especialidade("Geral", 20);
+        especialidade2.add(geral);
+        Set<Especialidade> especialidade3 = new HashSet<>();
+        Especialidade cardiologista= new Especialidade("Cardiologista", 50);
+        especialidade3.add(cardiologista);
 
-        especialidadeRepoI.save(dentista);
-        especialidadeRepoI.save(geral);
+        Set<Medico> medicos = new HashSet<>();
+        Medico medico1= new Medico("Luis Sousa", "luis@gmail.com", "915345678", dentista);
+        Medico medico2= new Medico("Pedro Silva", "pedro@gmail.com", "915765432", geral);
+        Medico medico3= new Medico("Mario Andrade", "mario@gmail.com", "957654321", cardiologista);
 
-        Medico medico1= new Medico("Joao Coelho", "joao@gmail.com", "912345678", dentista);
-        Medico medico2= new Medico("Pedro Mota", "pedro@gmail.com", "918765432", geral);
-        Medico medico3= new Medico("Zezinho", "ze@gmail.com", "987654321", geral);
+        medicos.add(medico1);
+        medicos.add(medico2);
+        medicos.add(medico3);
 
-        medicoRepoI.save(medico1);
-        medicoRepoI.save(medico2);
-        medicoRepoI.save(medico3);
+        medico1.setEspecialidades(especialidade1);
+        medico1.addEspecialidadeeToMedico(dentista);
+        medico2.setEspecialidades(especialidade2);
+        medico2.addEspecialidadeeToMedico(geral);
+        medico3.setEspecialidades(especialidade3);
+        medico3.addEspecialidadeeToMedico(cardiologista);
 
         Set<WorkTime> workTimes1= new HashSet<>();
         WorkTime workTime1= new WorkTime();
@@ -106,64 +118,64 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         medico3.addWorkTimeToMedico(workTime5);
         medico3.addWorkTimeToMedico(workTime6);
 
-        workTimeRepoI.saveAll(workTimes1);
-        workTimeRepoI.saveAll(workTimes2);
-        workTimeRepoI.saveAll(workTimes3);
-        workTimeRepoI.save(workTime1);
-        workTimeRepoI.save(workTime2);
-        workTimeRepoI.save(workTime3);
-        workTimeRepoI.save(workTime4);
-        workTimeRepoI.save(workTime5);
-        workTimeRepoI.save(workTime6);
-
+        Set<Paciente> pacientes = new HashSet<>();
        Paciente paciente1= new Paciente("Ana", 21, "234567890", true, "123456789");
        Paciente paciente2= new Paciente("Luis", 71, "224365879", true, "180333111");
        Paciente paciente3= new Paciente("Rafael", 35, "214365879", false, "189333111");
        Paciente paciente4= new Paciente("Rui", 50, "264365879", false, "199333111");
 
-        pacienteRepoI.save(paciente1);
-        pacienteRepoI.save(paciente2);
-        pacienteRepoI.save(paciente3);
-        pacienteRepoI.save(paciente4);
+       pacientes.add(paciente1);
+       pacientes.add(paciente2);
+       pacientes.add(paciente3);
+       pacientes.add(paciente4);
 
+       Set<Consulta> consultas1 = new HashSet<>();
+       Set<Consulta> consultas2 = new HashSet<>();
+       Set<Consulta> consultas3 = new HashSet<>();
        Consulta consulta1= new Consulta();
-       consulta1.setHorario(LocalDateTime.of(2019,1,20,10,0));
+       consulta1.setHorario(LocalDateTime.of(2019,1,21,10,0));
+       consulta1.setMedico(medico1);
+       consulta1.setPaciente(paciente1);
+       consulta1.setTipo(medico1.getEspecialidadeMedico());
        Consulta consulta2= new Consulta();
-       consulta2.setHorario(LocalDateTime.of(2019,1,20,12,0));
+       consulta2.setHorario(LocalDateTime.of(2019,1,22,12,0));
+        consulta2.setMedico(medico2);
+        consulta2.setPaciente(paciente3);
+        consulta2.setTipo(medico2.getEspecialidadeMedico());
        Consulta consulta3= new Consulta();
-       consulta3.setHorario(LocalDateTime.of(2019,1,21,11,0));
-       consultaRepoI.save(consulta1);
-       consultaRepoI.save(consulta2);
-       consultaRepoI.save(consulta3);
+       consulta3.setHorario(LocalDateTime.of(2019,1,25,13,0));
+        consulta3.setMedico(medico3);
+        consulta3.setPaciente(paciente2);
+        consulta3.setTipo(medico3.getEspecialidadeMedico());
 
-    }
+       consultas1.add(consulta1);
+       consultas2.add(consulta2);
+       consultas3.add(consulta3);
 
-    /*private Set<Medico> createMedicosFromFile() throws IOException {
-        Set<Medico> medicos=new HashSet<>();
-        String line;
+        medico1.setConsultas(consultas1);
+        medico1.addConsutaToMedico(consulta1);
 
-//      InputStream is = this.getClass().getResourceAsStream("/medicos.txt");
-        InputStream is = new ClassPathResource("medicos.txt").getInputStream();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-            while((line=br.readLine())!=null){
-                String attributes[]=line.split(",");
-                Especialidade especialidade = new Especialidade(attributes[3], Float.parseFloat(attributes[4]));
-                Medico medico=new Medico(attributes[0],attributes[1], attributes[2], especialidade); // como se faz nome medico, especialidade, quero meter o wroktime tambem
-                medicos.add(medico);
-            }
+        medico2.setConsultas(consultas2);
+        medico2.addConsutaToMedico(consulta2);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return medicos;
-    }*/
+        medico3.setConsultas(consultas3);
+        medico3.addConsutaToMedico(consulta3);
 
-    private Medico getByName(String name,Set<Medico>medicos){
-        for(Medico medico:medicos){
-            if(medico.getNome().equalsIgnoreCase(name)){
-                return medico;
-            }
-        }
-        return null;
+        medicoRepoI.saveAll(medicos);
+
+        especialidadeRepoI.saveAll(especialidade1);
+        especialidadeRepoI.saveAll(especialidade2);
+        especialidadeRepoI.saveAll(especialidade3);
+
+        workTimeRepoI.saveAll(workTimes1);
+        workTimeRepoI.saveAll(workTimes2);
+        workTimeRepoI.saveAll(workTimes3);
+
+        pacienteRepoI.saveAll(pacientes);
+
+        consultaRepoI.save(consulta1);
+        consultaRepoI.save(consulta2);
+        consultaRepoI.save(consulta3);
+
     }
 }

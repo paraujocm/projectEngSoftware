@@ -1,5 +1,7 @@
 package engsoftware.project.models;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +20,6 @@ public class Medico extends BaseModel  {
     private String email;
     private String nrTelemovel;
 
-
     @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<Especialidade> especialidades=new HashSet<>();
 
@@ -35,12 +36,19 @@ public class Medico extends BaseModel  {
         this.addEspecialidadeeToMedico(especialidade);
     }
 
+    public Medico(String nome, String email, String nrTelemovel) {
+        this.nome = nome;
+        this.email = email;
+        this.nrTelemovel = nrTelemovel;
+    }
+
     // add consulta a um medico
     public boolean addConsutaToMedico(Consulta consulta){
         if(trabalha(consulta.getHorario()) && disponivel(consulta.getHorario()))
         {
             consultas.add(consulta);
             consulta.setMedico(this);
+            consulta.setTipo(this.getEspecialidadeMedico());
             return true;
         }
         else{
@@ -48,11 +56,24 @@ public class Medico extends BaseModel  {
         }
     }
 
-    // add worktime a um medico
+    public Especialidade getEspecialidadeMedico(){
+        for(Especialidade especialidade:this.getEspecialidades()){
+            return especialidade;
+        }
+        return null;
+    }
+
+    // add espe. a um medico
     public void addEspecialidadeeToMedico(Especialidade especialidade){
         especialidades.add(especialidade);
         especialidade.setMedico(this);
     }
+
+    // remover espe. a um medico
+    public void removeEspecialidadeToMedico(Especialidade especialidade){
+        especialidades.remove(especialidade);
+    }
+
 
     // add worktime a um medico
     public void addWorkTimeToMedico(WorkTime workTime){
@@ -64,15 +85,8 @@ public class Medico extends BaseModel  {
         workTimes.remove(workTime);
     }
 
-    public void addMedico(Medico medico){
-        medico.addMedico(medico);
-    }
 
-    public void removeMedico(Medico medico){
-        medico.removeMedico(medico);
-    }
-
-    public boolean trabalha (LocalDateTime dataConsulta){
+    private boolean trabalha(LocalDateTime dataConsulta){
         for(WorkTime horarioActual:this.getWorkTimes()){
             if(horarioActual.getDay().equals(dataConsulta.getDayOfWeek())){
                 if (horarioActual.getStart().isBefore(dataConsulta.toLocalTime())){
@@ -85,7 +99,7 @@ public class Medico extends BaseModel  {
         return false;
     }
 
-    public boolean disponivel (LocalDateTime dataConsulta){
+    private boolean disponivel(LocalDateTime dataConsulta){
         for(Consulta consultaMedico:this.getConsultas()){
             if(consultaMedico.getHorario().getDayOfWeek().equals(dataConsulta.getDayOfWeek())){
                 if (consultaMedico.getHorario().equals(dataConsulta)) {

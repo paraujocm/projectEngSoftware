@@ -41,10 +41,28 @@ public class PacienteController {
         return pacienteService.findByNrUtenteSaude(nrUtenteSaude).get();
     }
 
-    @PostMapping(value = "/{nrUtenteSaude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente, @PathVariable("nrUtenteSaude") String nrUtenteSaude){
-        logger.info(paciente.toString()+" "+nrUtenteSaude);
-        Optional<Paciente> pacienteOptional= pacienteService.savePaciente(nrUtenteSaude);
+//    @PostMapping(value = "/{nrUtenteSaude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente, @PathVariable("nrUtenteSaude") String nrUtenteSaude){
+//        logger.info(paciente.toString()+" "+nrUtenteSaude);
+//        Optional<Paciente> pacienteOptional= pacienteService.savePaciente(nrUtenteSaude);
+//        if(pacienteOptional.isPresent()){
+//            return ResponseEntity.ok(pacienteOptional.get());
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+
+    @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente){
+        //logger.info(paciente.toString()+" "+nrUtenteSaude);
+
+        return pacienteService.savePaciente(paciente);
+    }
+
+
+    @PostMapping(value = "/remove/{nrUtenteSaude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Paciente> removePaciente(@PathVariable("nrUtenteSaude") String nrUtenteSaude){
+        //logger.info(especialidade.toString()+" "+nameMedico);
+        Optional<Paciente> pacienteOptional= pacienteService.removePaciente(nrUtenteSaude);
         if(pacienteOptional.isPresent()){
             return ResponseEntity.ok(pacienteOptional.get());
         }

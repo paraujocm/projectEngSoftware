@@ -26,4 +26,6 @@ public interface ConsultaServiceI {
 
         Optional<Consulta> saveConsulta( Consulta consulta, String nrUtenteSaude, String nameMedico);
 
+        Optional<Consulta> removeConsulta (Long id);
+
 }

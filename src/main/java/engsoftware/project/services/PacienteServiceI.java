@@ -2,6 +2,7 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Paciente;
 import engsoftware.project.services.filters.Paciente.FilterObjectPaciente;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 import java.util.Set;
@@ -20,5 +21,7 @@ public interface PacienteServiceI {
 
     Paciente save(Paciente paciente);
 
-    Optional<Paciente> savePaciente (String nr_utente_saude);
+    ResponseEntity<Paciente> savePaciente (Paciente paciente);
+
+    Optional<Paciente> removePaciente (String nrUtenteSaude);
 }

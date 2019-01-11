@@ -37,7 +37,6 @@ public class EspecialidadeController {
         return especialidadeService.findByName(name).get();
     }
 
-
     @PostMapping(value = "/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Especialidade> saveEspecialidade(@RequestBody Especialidade especialidade, @PathVariable("nameMedico") String nameMedico){
         logger.info(especialidade.toString()+" "+nameMedico);
@@ -48,13 +47,15 @@ public class EspecialidadeController {
         return ResponseEntity.notFound().build();
     }
 
-    /*
-    //remove consuta from paciente
-    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Especialidade removeEspecialidade(@PathVariable ("nameMedico") String nameMedico, @RequestBody Especialidade especialidade){
-        Medico medico = especialidadeService.findByMedico(nameMedico).get() ;
-        medico.removeEspecialidadeFromMedico(especialidade);
-        especialidadeService.save(especialidade);
-        return especialidade;
-    }*/
+    @PostMapping(value = "/remove/{nameEspecialidade}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Especialidade> removeEspecialidade(@PathVariable("nameEspecialidade") String nameEspecialidade){
+        //logger.info(especialidade.toString()+" "+nameMedico);
+        Optional<Especialidade> especialidadeOptional= especialidadeService.removeEspecialidade(nameEspecialidade);
+        if(especialidadeOptional.isPresent()){
+            return ResponseEntity.ok(especialidadeOptional.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
 }

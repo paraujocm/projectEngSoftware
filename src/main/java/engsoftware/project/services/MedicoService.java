@@ -3,6 +3,7 @@ package engsoftware.project.services;
 import engsoftware.project.models.Medico;
 import engsoftware.project.repositories.MedicoRepoI;
 import engsoftware.project.services.filters.Medico.FilterObjectMedico;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -65,17 +66,35 @@ public class MedicoService implements  MedicoServiceI{
         return this.medicoRepoI.save(medico);
     }
 
-    @Override
-    public Optional<Medico> saveMedico(String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
-        if(medicoOptional.isPresent()){
-            Medico medico=medicoOptional.get();
+//    @Override
+//    public Optional<Medico> saveMedico(String nameMedico) {
+//        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
+//        if(medicoOptional.isPresent()){
+//            Medico medico=medicoOptional.get();
+//
+//           // medico.addMedico(medico);
+//            medicoRepoI.save(medico);
+//            return medicoRepoI.findByNome(nameMedico);
+//        }
+//        return Optional.empty();
+//    }
 
-            medico.addMedico(medico);
-            medicoRepoI.save(medico);
-            return medicoRepoI.findByNome(nameMedico);
-        }
-        return Optional.empty();
+    @Override
+    public ResponseEntity<Medico> saveMedico(Medico medico) {
+        Medico medico1= medicoRepoI.save(medico);
+        return ResponseEntity.notFound().build();
     }
 
+    @Override
+    public Optional<Medico> removeMedico (String nameMedico) {
+        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
+        if(medicoOptional.isPresent()){
+            Medico medico= medicoOptional.get();
+
+            medicoRepoI.delete(medico);
+            return medicoRepoI.findByNome(medico.getNome());
+        }
+        return Optional.empty();
+
+    }
 }

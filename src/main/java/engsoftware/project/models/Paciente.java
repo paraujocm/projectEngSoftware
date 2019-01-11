@@ -37,20 +37,17 @@ public class Paciente extends BaseModel  {
 
     // add consulta a um paciente
     public void addConsutaToPaciente(Consulta consulta){
-        consultas.add(consulta);
-        consulta.setPaciente(this);
+        if(!this.problematico){
+            consultas.add(consulta);
+            consulta.setPaciente(this);
+        }
     }
 
     public void removeConsultaFromPaciente(Consulta consulta){
         consultas.remove(consulta);
+        this.consultas.remove(consulta);
     }
 
-    public void addPaciente(Paciente paciente){
-        paciente.addPaciente(paciente);
-    }
 
-    public void removePaciente(Paciente paciente){
-        paciente.removePaciente(paciente);
-    }
 
 }

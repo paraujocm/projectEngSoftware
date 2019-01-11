@@ -47,12 +47,13 @@ public class ConsultaController {
         return ResponseEntity.notFound().build();
     }
 
-    //remove consuta from paciente
-    @RequestMapping (value = "/{nrUtenteSaude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Consulta removeConsulta(@PathVariable ("nrUtenteSaude") String nrUtenteSaude, @RequestBody Consulta consulta){
-        Paciente paciente = consultaService.findByNrUtenteSaude(nrUtenteSaude).get();
-        paciente.removeConsultaFromPaciente(consulta);
-        consultaService.save(consulta);
-        return consulta;
+    //remove consuta
+    @PostMapping(value = "/remove/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Consulta> removeConsulta(@PathVariable("id") Long id){
+        Optional<Consulta> consultaOptional= consultaService.removeConsulta(id);
+        if(consultaOptional.isPresent()){
+            return ResponseEntity.ok(consultaOptional.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 }

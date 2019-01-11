@@ -4,6 +4,7 @@ package engsoftware.project.services;
 import engsoftware.project.models.Paciente;
 import engsoftware.project.repositories.PacienteRepoI;
 import engsoftware.project.services.filters.Paciente.FilterObjectPaciente;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -65,15 +66,21 @@ public class PacienteService implements PacienteServiceI {
 
 
     @Override
-    public Optional<Paciente> savePaciente(String nrUtenteSaude) {
+    public ResponseEntity<Paciente> savePaciente(Paciente paciente) {
+        Paciente paciente1= pacienteRepoI.save(paciente);
+        return ResponseEntity.notFound().build();
+    }
+
+    @Override
+    public Optional<Paciente> removePaciente (String nrUtenteSaude) {
         Optional<Paciente> pacienteOptional=this.pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
         if(pacienteOptional.isPresent()){
-            Paciente paciente=pacienteOptional.get();
+            Paciente paciente= pacienteOptional.get();
 
-            paciente.addPaciente(paciente);
-            pacienteRepoI.save(paciente);
+            pacienteRepoI.delete(paciente);
             return pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
         }
         return Optional.empty();
+
     }
 }
