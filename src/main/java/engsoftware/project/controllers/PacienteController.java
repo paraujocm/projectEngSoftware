@@ -51,10 +51,10 @@ public class PacienteController {
         return ResponseEntity.notFound().build();
     }
 
-    @RequestMapping (value = "/{nrUtenteSaude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Paciente removePaciente(@PathVariable ("nrUtenteSaude") String nrUtenteSaude, @RequestBody Paciente paciente){
-        Paciente paciente1= pacienteService.findByNrUtenteSaude(nrUtenteSaude).get() ;
-        paciente1.removePaciente(paciente);
-        return paciente;
-    }
+//    @RequestMapping (value = "/{nrUtenteSaude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody Paciente removePaciente(@PathVariable ("nrUtenteSaude") String nrUtenteSaude, @RequestBody Paciente paciente){
+//        Paciente paciente1= pacienteService.findByNrUtenteSaude(nrUtenteSaude).get() ;
+//        paciente1.removePaciente(paciente);
+//        return paciente;
+//    }
 }

@@ -47,7 +47,7 @@ public class MedicoService implements  MedicoServiceI{
 
     @Override
     public Optional<Medico> findByName(String nameMedico) {
-        return medicoRepoI.findByName(nameMedico);
+        return medicoRepoI.findByNome(nameMedico);
     }
 
     @Override
@@ -67,13 +67,13 @@ public class MedicoService implements  MedicoServiceI{
 
     @Override
     public Optional<Medico> saveMedico(String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByName(nameMedico);
+        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
         if(medicoOptional.isPresent()){
             Medico medico=medicoOptional.get();
 
             medico.addMedico(medico);
             medicoRepoI.save(medico);
-            return medicoRepoI.findByName(nameMedico);
+            return medicoRepoI.findByNome(nameMedico);
         }
         return Optional.empty();
     }

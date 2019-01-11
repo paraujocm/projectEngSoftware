@@ -59,7 +59,7 @@ public class ConsultaService implements ConsultaServiceI {
 
     @Override
     public Optional<Medico> findByName(String nameMedico) {
-        return medicoRepoI.findByName(nameMedico);
+        return medicoRepoI.findByNome(nameMedico);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ConsultaService implements ConsultaServiceI {
     @Override
     public Optional<Consulta> saveConsulta( Consulta consulta, String nrUtenteSaude, String nameMedico) {
         Optional<Paciente> pacienteOptional = this.pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
-        Optional<Medico> medicoOptional = this.medicoRepoI.findByName(nameMedico);
+        Optional<Medico> medicoOptional = this.medicoRepoI.findByNome(nameMedico);
         if (pacienteOptional.isPresent() && medicoOptional.isPresent())  {
             Paciente paciente = pacienteOptional.get();
             Medico medico = medicoOptional.get();

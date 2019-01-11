@@ -37,7 +37,7 @@ public class WorkTimeController {
     /*// cria um worktime e add ao medico
     @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody WorkTime creatWorkTime(@PathVariable("nameMedico") String nameMedico, @RequestBody WorkTime workTime){
-        Medico medico = medicoRepoI.findByName(nameMedico).get();
+        Medico medico = medicoRepoI.findByNome(nameMedico).get();
         medico.addWorkTimeToMedico(workTime);
         medicoRepoI.save(medico);
         return workTime;
@@ -53,11 +53,11 @@ public class WorkTimeController {
         return ResponseEntity.notFound().build();
     }
 
-    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody WorkTime removeWorkTime(@PathVariable ("nameMedico") String nameMedico, @RequestBody WorkTime workTime){
-        Medico medico = worktimeService.findByMedico(nameMedico).get() ;
-        medico.removeWorkTimeFromMedico(workTime);
-        worktimeService.save(workTime);
-        return workTime;
-    }
+//    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody WorkTime removeWorkTime(@PathVariable ("nameMedico") String nameMedico, @RequestBody WorkTime workTime){
+//        Medico medico = worktimeService.findByMedico(nameMedico).get() ;
+//        medico.removeWorkTimeFromMedico(workTime);
+//        worktimeService.save(workTime);
+//        return workTime;
+//    }
 }

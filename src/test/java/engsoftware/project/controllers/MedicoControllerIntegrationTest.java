@@ -2,7 +2,7 @@ package engsoftware.project.controllers;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import engsoftware.project.DemoTestsApplicationTests;
+import engsoftware.project.ProjectApplicationTests;
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
 import engsoftware.project.services.MedicoServiceI;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoTestsApplicationTests.class)
+@SpringBootTest(classes = ProjectApplicationTests.class)
 @AutoConfigureMockMvc
 @Transactional
 public class MedicoControllerIntegrationTest {

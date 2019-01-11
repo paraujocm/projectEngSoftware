@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface MedicoRepoI extends CrudRepository<Medico, Long> {
 
-    Optional<Medico> findByName(String nome);
+    Optional<Medico> findByNome(String nome);
 }

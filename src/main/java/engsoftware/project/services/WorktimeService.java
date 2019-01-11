@@ -55,7 +55,7 @@ public class WorktimeService implements WorkTimeServiceI{
 
     @Override
     public Optional<Medico> findByMedico(String nameMedico) {
-        return medicoRepoI.findByName(nameMedico);
+        return medicoRepoI.findByNome(nameMedico);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class WorktimeService implements WorkTimeServiceI{
 
     @Override
     public Optional<WorkTime> saveWorkTime (WorkTime workTime, String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByName(nameMedico);
+        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
         if(medicoOptional.isPresent()){
             Medico medico=medicoOptional.get();
 

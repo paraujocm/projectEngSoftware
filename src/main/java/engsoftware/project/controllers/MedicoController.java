@@ -48,13 +48,13 @@ public class MedicoController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Medico removeMedico(@PathVariable ("nameMedico") String nameMedico, @RequestBody Medico medico){
-        Medico medico1= medicoService.findByName(nameMedico).get() ;
-        medico1.removeMedico(medico);
-        return medico;
-    }
+//
+//    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody Medico removeMedico(@PathVariable ("nameMedico") String nameMedico, @RequestBody Medico medico){
+//        Medico medico1= medicoService.findByName(nameMedico).get() ;
+//        medico1.removeMedico(medico);
+//        return medico;
+//    }
 
 
 }

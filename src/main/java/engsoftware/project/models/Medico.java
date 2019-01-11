@@ -1,6 +1,7 @@
 package engsoftware.project.models;
 
 import lombok.*;
+import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,13 +19,13 @@ public class Medico extends BaseModel  {
     private String email;
     private String nrTelemovel;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "medico")
+    @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<Especialidade> especialidades=new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "medico")
+    @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<Consulta> consultas=new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "medico")
+    @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<WorkTime> workTimes=new HashSet<>();
 
     public Medico(String nome, String email, String nrTelemovel, Especialidade especialidade) {

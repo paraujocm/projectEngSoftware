@@ -15,8 +15,8 @@ import java.time.LocalTime;
 public class WorkTime extends BaseModel  {
 
     @EqualsAndHashCode.Exclude
-    @ManyToOne
     @ToString.Exclude
+    @ManyToOne
     private Medico medico;
 
     private DayOfWeek day;

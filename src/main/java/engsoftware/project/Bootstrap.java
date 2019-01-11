@@ -1,8 +1,7 @@
 package engsoftware.project;
 
 import engsoftware.project.models.*;
-import engsoftware.project.repositories.ConsultaRepoI;
-import engsoftware.project.repositories.MedicoRepoI;
+import engsoftware.project.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -27,13 +26,22 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private Logger logger= LoggerFactory.getLogger(Bootstrap.class);
 
+    private EspecialidadeRepoI especialidadeRepoI;
+
+    private WorkTimeRepoI workTimeRepoI;
+
     private MedicoRepoI medicoRepoI;
 
     private ConsultaRepoI consultaRepoI;
 
-    public Bootstrap(MedicoRepoI medicoRepoI, ConsultaRepoI consultaRepoI) {
+    private PacienteRepoI pacienteRepoI;
+
+    public Bootstrap(EspecialidadeRepoI especialidadeRepoI, WorkTimeRepoI workTimeRepoI, MedicoRepoI medicoRepoI, ConsultaRepoI consultaRepoI, PacienteRepoI pacienteRepoI) {
+        this.especialidadeRepoI = especialidadeRepoI;
+        this.workTimeRepoI = workTimeRepoI;
         this.medicoRepoI = medicoRepoI;
         this.consultaRepoI = consultaRepoI;
+        this.pacienteRepoI = pacienteRepoI;
     }
 
     @Override
@@ -42,9 +50,20 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Especialidade dentista= new Especialidade("Dentista", 30);
         Especialidade geral= new Especialidade("Clinica Geral", 30);
 
+        especialidadeRepoI.save(dentista);
+        especialidadeRepoI.save(geral);
+
         Medico medico1= new Medico("Joao Coelho", "joao@gmail.com", "912345678", dentista);
         Medico medico2= new Medico("Pedro Mota", "pedro@gmail.com", "918765432", geral);
         Medico medico3= new Medico("Zezinho", "ze@gmail.com", "987654321", geral);
+
+        medicoRepoI.save(medico1);
+        medicoRepoI.save(medico2);
+        medicoRepoI.save(medico3);
+
+        medico1.addEspecialidade(dentista);
+        medico2.addEspecialidade(geral);
+        medico3.addEspecialidade(geral);
 
         Set<WorkTime> workTimes1= new HashSet<>();
         WorkTime workTime1= new WorkTime();
@@ -53,11 +72,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTime1.setEnd(LocalTime.of(16, 0));
         workTimes1.add(workTime1);
         WorkTime workTime2= new WorkTime();
-        workTime1.setDay(DayOfWeek.WEDNESDAY);
-        workTime1.setStart(LocalTime.of(13, 20));
-        workTime1.setEnd(LocalTime.of(22,0));
+        workTime2.setDay(DayOfWeek.WEDNESDAY);
+        workTime2.setStart(LocalTime.of(13, 20));
+        workTime2.setEnd(LocalTime.of(22,0));
         workTimes1.add(workTime2);
         medico1.setWorkTimes(workTimes1);
+        medico1.addWorkTimeToMedico(workTime1);
 
         Set<WorkTime> workTimes2= new HashSet<>();
         WorkTime workTime3= new WorkTime();
@@ -85,19 +105,34 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTimes3.add(workTime6);
         medico3.setWorkTimes(workTimes3);
 
-       Paciente paciente1= new Paciente("Ana", 21, "234567890", false, "123456789");
-       Paciente paciente2= new Paciente("Luis", 71, "224365879", false, "180333111");
+        workTimeRepoI.saveAll(workTimes1);
+        workTimeRepoI.saveAll(workTimes2);
+        workTimeRepoI.saveAll(workTimes3);
+        workTimeRepoI.save(workTime1);
+        workTimeRepoI.save(workTime2);
+        workTimeRepoI.save(workTime3);
+        workTimeRepoI.save(workTime4);
+        workTimeRepoI.save(workTime5);
+        workTimeRepoI.save(workTime6);
+
+       Paciente paciente1= new Paciente("Ana", 21, "234567890", true, "123456789");
+       Paciente paciente2= new Paciente("Luis", 71, "224365879", true, "180333111");
        Paciente paciente3= new Paciente("Rafael", 35, "214365879", false, "189333111");
        Paciente paciente4= new Paciente("Rui", 50, "264365879", false, "199333111");
 
-       WorkTime consultaWT= new WorkTime();
-       consultaWT.setDay(DayOfWeek.MONDAY);
-       consultaWT.setStart(LocalTime.of(10,0));
+        pacienteRepoI.save(paciente1);
+        pacienteRepoI.save(paciente2);
+        pacienteRepoI.save(paciente3);
+        pacienteRepoI.save(paciente4);
+
        Consulta consulta1= new Consulta();
        consulta1.setHorario(LocalDateTime.of(2019,1,20,10,0));
 
-       medico1.addConsutaToMedico(consulta1);
-       paciente1.addConsutaToPaciente(consulta1);
+        consultaRepoI.save(consulta1);
+
+//       medico1.addConsutaToMedico(consulta1);
+//       paciente1.addConsutaToPaciente(consulta1);
+
     }
 
     /*private Set<Medico> createMedicosFromFile() throws IOException {

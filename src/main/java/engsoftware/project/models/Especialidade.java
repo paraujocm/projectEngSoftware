@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 @Getter
@@ -13,8 +14,8 @@ import javax.persistence.ManyToOne;
 public class Especialidade extends BaseModel  {
 
     @EqualsAndHashCode.Exclude
-    @ManyToOne
     @ToString.Exclude
+    @ManyToOne
     private Medico medico;
 
     private String nome;

@@ -56,12 +56,12 @@ public class EspecialidadeService implements EspecialidadeServiceI {
 
     @Override
     public Optional<Especialidade> findByName(String nameEspecialidade) {
-        return this.especialidadeRepoI.findByName(nameEspecialidade);
+        return this.especialidadeRepoI.findByNome(nameEspecialidade);
     }
 
     @Override
     public Optional<Medico> findByMedico(String nameMedico) {
-        return medicoRepoI.findByName(nameMedico);
+        return medicoRepoI.findByNome(nameMedico);
     }
 
     @Override
@@ -71,13 +71,13 @@ public class EspecialidadeService implements EspecialidadeServiceI {
 
     @Override
     public Optional<Especialidade> saveEspecialidade (Especialidade especialidade, String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByName(nameMedico);
+        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
         if(medicoOptional.isPresent()){
             Medico medico=medicoOptional.get();
 
             medico.addEspecialidade(especialidade);
             medicoRepoI.save(medico);
-            return especialidadeRepoI.findByName(especialidade.getNome());
+            return especialidadeRepoI.findByNome(especialidade.getNome());
         }
         return Optional.of(especialidade);
 

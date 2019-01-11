@@ -48,6 +48,7 @@ public class EspecialidadeController {
         return ResponseEntity.notFound().build();
     }
 
+    /*
     //remove consuta from paciente
     @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Especialidade removeEspecialidade(@PathVariable ("nameMedico") String nameMedico, @RequestBody Especialidade especialidade){
@@ -55,5 +56,5 @@ public class EspecialidadeController {
         medico.removeEspecialidadeFromMedico(especialidade);
         especialidadeService.save(especialidade);
         return especialidade;
-    }
+    }*/
 }

@@ -16,7 +16,7 @@ import java.util.Set;
 @ToString
 public class Paciente extends BaseModel  {
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "paciente")
     private Set<Consulta> consultas=new HashSet<>();
 
     private String nome;
