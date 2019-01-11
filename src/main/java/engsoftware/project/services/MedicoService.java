@@ -55,10 +55,6 @@ public class MedicoService implements  MedicoServiceI{
     public Optional<Medico> findById(Long id) {
 
         return medicoRepoI.findById(id);
-        /*if(courseOptional.isPresent()){
-            return Optional.of(courseOptional.get().getDTO());
-        }
-        return Optional.empty();*/
     }
 
     @Override
@@ -66,22 +62,10 @@ public class MedicoService implements  MedicoServiceI{
         return this.medicoRepoI.save(medico);
     }
 
-//    @Override
-//    public Optional<Medico> saveMedico(String nameMedico) {
-//        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
-//        if(medicoOptional.isPresent()){
-//            Medico medico=medicoOptional.get();
-//
-//           // medico.addMedico(medico);
-//            medicoRepoI.save(medico);
-//            return medicoRepoI.findByNome(nameMedico);
-//        }
-//        return Optional.empty();
-//    }
 
     @Override
     public ResponseEntity<Medico> saveMedico(Medico medico) {
-        Medico medico1= medicoRepoI.save(medico);
+        medicoRepoI.save(medico);
         return ResponseEntity.notFound().build();
     }
 

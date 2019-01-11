@@ -8,11 +8,6 @@ import java.util.stream.Collectors;
 
 public class MedicoEspecialidadeFilter implements MedicoFilter {
 
-   /* private String especialidadeToFilter;
-
-    public MedicoEspecialidadeFilter(String especialidadeToFilter) {
-        this.especialidadeToFilter = especialidadeToFilter;
-    } */
 
     private Especialidade especialidadeToFilter;
 

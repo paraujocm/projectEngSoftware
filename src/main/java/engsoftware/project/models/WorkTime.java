@@ -1,5 +1,6 @@
 package engsoftware.project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import java.time.LocalTime;
 public class WorkTime extends BaseModel  {
 
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Medico medico;

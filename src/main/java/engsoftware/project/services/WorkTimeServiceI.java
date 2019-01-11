@@ -1,6 +1,5 @@
 package engsoftware.project.services;
 
-import engsoftware.project.models.Medico;
 import engsoftware.project.models.WorkTime;
 
 import java.time.DayOfWeek;
@@ -15,13 +14,14 @@ public interface WorkTimeServiceI {
 
     Optional<WorkTime> findById(Long id);
 
-    Optional<Medico> findByMedico(String nameMedico);
+    Iterable<WorkTime> findByMedico(String nameMedico);
 
     Set<WorkTime> findAll();
 
-    WorkTime save(WorkTime especialidade);
+    WorkTime save(WorkTime workTime);
 
     Optional<WorkTime> saveWorkTime(WorkTime workTime, String nameMedico);
 
+    Optional<WorkTime> removeWorktime (Long id);
 
 }

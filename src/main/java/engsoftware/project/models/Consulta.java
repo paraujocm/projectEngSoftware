@@ -1,5 +1,6 @@
 package engsoftware.project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -15,11 +16,13 @@ import java.time.LocalDateTime;
 public class Consulta extends BaseModel {
 
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @ManyToOne
     @ToString.Exclude
     private Medico medico;
 
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @ManyToOne
     @ToString.Exclude
     private Paciente paciente;

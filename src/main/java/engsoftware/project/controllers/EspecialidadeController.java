@@ -1,7 +1,6 @@
 package engsoftware.project.controllers;
 
 import engsoftware.project.models.Especialidade;
-import engsoftware.project.models.Medico;
 import engsoftware.project.services.EspecialidadeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +31,7 @@ public class EspecialidadeController {
         return especialidadeService.findById(id).get();
     }
 
-    @RequestMapping(value="/{name}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/nome/{name}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public  @ResponseBody Especialidade getById(@PathVariable("name") String name){
         return especialidadeService.findByName(name).get();
     }
@@ -49,7 +48,6 @@ public class EspecialidadeController {
 
     @PostMapping(value = "/remove/{nameEspecialidade}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Especialidade> removeEspecialidade(@PathVariable("nameEspecialidade") String nameEspecialidade){
-        //logger.info(especialidade.toString()+" "+nameMedico);
         Optional<Especialidade> especialidadeOptional= especialidadeService.removeEspecialidade(nameEspecialidade);
         if(especialidadeOptional.isPresent()){
             return ResponseEntity.ok(especialidadeOptional.get());

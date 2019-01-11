@@ -1,5 +1,6 @@
 package engsoftware.project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 public class Especialidade extends BaseModel  {
 
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @ToString.Exclude
     @OneToOne
     private Medico medico;

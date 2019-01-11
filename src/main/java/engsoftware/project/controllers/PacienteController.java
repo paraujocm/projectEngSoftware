@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/pacientes")
+@RequestMapping("/paciente")
 public class PacienteController {
 
     private PacienteService pacienteService;
@@ -35,21 +35,11 @@ public class PacienteController {
         return pacienteService.findById(id).get();
     }
 
-    @RequestMapping(value= "/{nrUtenteSaude}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value= "/nrutente/{nrUtenteSaude}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public  @ResponseBody
     Paciente getById(@PathVariable("nrUtenteSaude") String nrUtenteSaude){
         return pacienteService.findByNrUtenteSaude(nrUtenteSaude).get();
     }
-
-//    @PostMapping(value = "/{nrUtenteSaude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente, @PathVariable("nrUtenteSaude") String nrUtenteSaude){
-//        logger.info(paciente.toString()+" "+nrUtenteSaude);
-//        Optional<Paciente> pacienteOptional= pacienteService.savePaciente(nrUtenteSaude);
-//        if(pacienteOptional.isPresent()){
-//            return ResponseEntity.ok(pacienteOptional.get());
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
 
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente){
@@ -61,7 +51,6 @@ public class PacienteController {
 
     @PostMapping(value = "/remove/{nrUtenteSaude}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Paciente> removePaciente(@PathVariable("nrUtenteSaude") String nrUtenteSaude){
-        //logger.info(especialidade.toString()+" "+nameMedico);
         Optional<Paciente> pacienteOptional= pacienteService.removePaciente(nrUtenteSaude);
         if(pacienteOptional.isPresent()){
             return ResponseEntity.ok(pacienteOptional.get());
@@ -69,10 +58,4 @@ public class PacienteController {
         return ResponseEntity.notFound().build();
     }
 
-//    @RequestMapping (value = "/{nrUtenteSaude}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public @ResponseBody Paciente removePaciente(@PathVariable ("nrUtenteSaude") String nrUtenteSaude, @RequestBody Paciente paciente){
-//        Paciente paciente1= pacienteService.findByNrUtenteSaude(nrUtenteSaude).get() ;
-//        paciente1.removePaciente(paciente);
-//        return paciente;
-//    }
 }

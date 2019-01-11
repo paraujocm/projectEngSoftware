@@ -54,8 +54,13 @@ public class WorktimeService implements WorkTimeServiceI{
     }
 
     @Override
-    public Optional<Medico> findByMedico(String nameMedico) {
-        return medicoRepoI.findByNome(nameMedico);
+    public Iterable<WorkTime> findByMedico(String nameMedico) {
+        Optional<Medico> medicoOptional = this.medicoRepoI.findByNome(nameMedico);
+        if (medicoOptional.isPresent()) {
+            Medico medico = medicoOptional.get();
+            return medico.getWorkTimes();
+        }
+        return null;
     }
 
     @Override
@@ -74,5 +79,18 @@ public class WorktimeService implements WorkTimeServiceI{
             return Optional.of(workTime);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<WorkTime> removeWorktime (Long id) {
+        Optional<WorkTime> workTimeOptional=this.workTimeRepoI.findById(id);
+        if(workTimeOptional.isPresent()){
+            WorkTime workTime= workTimeOptional.get();
+
+            workTimeRepoI.delete(workTime);
+            return workTimeRepoI.findById(id);
+        }
+        return Optional.empty();
+
     }
 }

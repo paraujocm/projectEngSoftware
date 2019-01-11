@@ -1,5 +1,6 @@
 package engsoftware.project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import java.util.Set;
 @ToString
 public class Paciente extends BaseModel  {
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "paciente")
     private Set<Consulta> consultas=new HashSet<>();
 

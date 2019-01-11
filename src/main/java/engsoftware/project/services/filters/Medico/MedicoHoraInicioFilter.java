@@ -18,10 +18,6 @@ public class MedicoHoraInicioFilter implements MedicoFilter {
     @Override
     public Set<Medico> filter(Set<Medico> medicos) {
         if(horaInicioToFilter==null)return medicos;
-/*
-        return medicos.stream()
-                .filter(medico -> medico.getWorkTimes().equals(this.horaInicioToFilter))
-                .collect(Collectors.toSet()); */
 
         Set<Medico> filteredMedicos = new HashSet<>();
         for (Medico medico : medicos) {

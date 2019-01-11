@@ -71,10 +71,6 @@ public class ConsultaService implements ConsultaServiceI {
     public Optional<Consulta> findById(Long id) {
 
         return consultaRepoI.findById(id);
-        /*if(courseOptional.isPresent()){
-            return Optional.of(courseOptional.get().getDTO());
-        }
-        return Optional.empty();*/
     }
 
     @Override

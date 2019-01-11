@@ -29,9 +29,5 @@ public class MedicoDiaFilter implements MedicoFilter {
             }
         }
         return filtered;
-/*        return medicos.stream()
-                .filter(medico -> medico.==this.diaToFilter)
-                .collect(Collectors.toSet());
-                */
     }
 }

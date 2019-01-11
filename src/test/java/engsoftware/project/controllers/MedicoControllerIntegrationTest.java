@@ -50,7 +50,7 @@ public class MedicoControllerIntegrationTest {
     }
 
     @Test
-    public void getAllCourse() throws Exception {
+    public void getAllMedico() throws Exception {
         Iterable<Medico> medicos = medicoServiceI.getFilteredMedico(new FilterObjectMedico());
         mvc.perform(get("/medico").contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())

@@ -1,8 +1,8 @@
 package engsoftware.project.controllers;
 
 import engsoftware.project.models.Consulta;
-import engsoftware.project.models.Paciente;
 import engsoftware.project.services.ConsultaService;
+import engsoftware.project.services.filters.Consulta.FilterObjectConsulta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -26,8 +26,8 @@ public class ConsultaController {
 
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Iterable<Consulta> getAllConsulta(){
-        return consultaService.findAll();
+    Iterable<Consulta> getAllConsulta(@ModelAttribute FilterObjectConsulta filterObjectConsulta){
+        return consultaService.getFilteredConsulta(filterObjectConsulta);
     }
 
     @RequestMapping(value="/{id}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)

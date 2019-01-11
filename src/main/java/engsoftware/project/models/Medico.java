@@ -20,12 +20,21 @@ public class Medico extends BaseModel  {
     private String email;
     private String nrTelemovel;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<Especialidade> especialidades=new HashSet<>();
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<Consulta> consultas=new HashSet<>();
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.MERGE,orphanRemoval = true,mappedBy = "medico")
     private Set<WorkTime> workTimes=new HashSet<>();
 

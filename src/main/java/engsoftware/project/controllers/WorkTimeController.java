@@ -30,18 +30,10 @@ public class WorkTimeController {
     }
 
     @RequestMapping(value="/{nameMedico}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public  @ResponseBody Medico getByMedico(@PathVariable("nameMedico") String nameMedico){
-        return worktimeService.findByMedico(nameMedico).get();
+    public  @ResponseBody Iterable<WorkTime> getByMedico(@PathVariable("nameMedico") String nameMedico){
+        return worktimeService.findByMedico(nameMedico);
     }
 
-    /*// cria um worktime e add ao medico
-    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody WorkTime creatWorkTime(@PathVariable("nameMedico") String nameMedico, @RequestBody WorkTime workTime){
-        Medico medico = medicoRepoI.findByNome(nameMedico).get();
-        medico.addWorkTimeToMedico(workTime);
-        medicoRepoI.save(medico);
-        return workTime;
-    }*/
 
     @PostMapping(value = "/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WorkTime> saveWorkTime(@RequestBody WorkTime workTime, @PathVariable("nameMedico") String nameMedico){
@@ -53,11 +45,13 @@ public class WorkTimeController {
         return ResponseEntity.notFound().build();
     }
 
-//    @RequestMapping (value = "/{nameMedico}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public @ResponseBody WorkTime removeWorkTime(@PathVariable ("nameMedico") String nameMedico, @RequestBody WorkTime workTime){
-//        Medico medico = worktimeService.findByMedico(nameMedico).get() ;
-//        medico.removeWorkTimeFromMedico(workTime);
-//        worktimeService.save(workTime);
-//        return workTime;
-//    }
+    //remove consuta
+    @PostMapping(value = "/remove/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WorkTime> removeWorktime(@PathVariable("id") Long id){
+        Optional<WorkTime> workTimeOptional= worktimeService.removeWorktime(id);
+        if(workTimeOptional.isPresent()){
+            return ResponseEntity.ok(workTimeOptional.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

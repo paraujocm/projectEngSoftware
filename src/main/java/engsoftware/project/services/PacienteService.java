@@ -53,10 +53,6 @@ public class PacienteService implements PacienteServiceI {
     public Optional<Paciente> findById(Long id) {
 
         return pacienteRepoI.findById(id);
-        /*if(courseOptional.isPresent()){
-            return Optional.of(courseOptional.get().getDTO());
-        }
-        return Optional.empty();*/
     }
 
     @Override
@@ -67,7 +63,7 @@ public class PacienteService implements PacienteServiceI {
 
     @Override
     public ResponseEntity<Paciente> savePaciente(Paciente paciente) {
-        Paciente paciente1= pacienteRepoI.save(paciente);
+        pacienteRepoI.save(paciente);
         return ResponseEntity.notFound().build();
     }
 
@@ -81,6 +77,5 @@ public class PacienteService implements PacienteServiceI {
             return pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
         }
         return Optional.empty();
-
     }
 }

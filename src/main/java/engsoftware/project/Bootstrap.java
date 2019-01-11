@@ -6,14 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -58,7 +51,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         especialidade3.add(cardiologista);
 
         Set<Medico> medicos = new HashSet<>();
-        Medico medico1= new Medico("Luis Sousa", "luis@gmail.com", "915345678", dentista);
+        Medico medico1= new Medico("Luis Pessoa", "luis@gmail.com", "915345678", dentista);
         Medico medico2= new Medico("Pedro Silva", "pedro@gmail.com", "915765432", geral);
         Medico medico3= new Medico("Mario Andrade", "mario@gmail.com", "957654321", cardiologista);
 
@@ -86,6 +79,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTimes1.add(workTime2);
         medico1.setWorkTimes(workTimes1);
         medico1.addWorkTimeToMedico(workTime1);
+        medico1.addWorkTimeToMedico(workTime2);
 
         Set<WorkTime> workTimes2= new HashSet<>();
         WorkTime workTime3= new WorkTime();
@@ -99,7 +93,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTime4.setEnd(LocalTime.of(14,0));
         workTimes2.add(workTime4);
         medico2.setWorkTimes(workTimes2);
-        medico2.addWorkTimeToMedico(workTime2);
+        medico2.addWorkTimeToMedico(workTime3);
         medico2.addWorkTimeToMedico(workTime4);
 
         Set<WorkTime> workTimes3= new HashSet<>();
@@ -114,7 +108,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTime6.setEnd(LocalTime.of(12,30));
         workTimes3.add(workTime6);
         medico3.setWorkTimes(workTimes3);
-        medico3.addWorkTimeToMedico(workTime3);
         medico3.addWorkTimeToMedico(workTime5);
         medico3.addWorkTimeToMedico(workTime6);
 
