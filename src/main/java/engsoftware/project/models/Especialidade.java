@@ -2,9 +2,7 @@ package engsoftware.project.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -25,4 +23,5 @@ public class Especialidade extends BaseModel  {
         this.nome=nome;
         this.preco=preco;
     }
+
 }

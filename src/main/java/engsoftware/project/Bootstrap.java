@@ -61,10 +61,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         medicoRepoI.save(medico2);
         medicoRepoI.save(medico3);
 
-        medico1.addEspecialidade(dentista);
-        medico2.addEspecialidade(geral);
-        medico3.addEspecialidade(geral);
-
         Set<WorkTime> workTimes1= new HashSet<>();
         WorkTime workTime1= new WorkTime();
         workTime1.setDay(DayOfWeek.MONDAY);
@@ -91,6 +87,8 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTime4.setEnd(LocalTime.of(14,0));
         workTimes2.add(workTime4);
         medico2.setWorkTimes(workTimes2);
+        medico2.addWorkTimeToMedico(workTime2);
+        medico2.addWorkTimeToMedico(workTime4);
 
         Set<WorkTime> workTimes3= new HashSet<>();
         WorkTime workTime5= new WorkTime();
@@ -104,6 +102,9 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         workTime6.setEnd(LocalTime.of(12,30));
         workTimes3.add(workTime6);
         medico3.setWorkTimes(workTimes3);
+        medico3.addWorkTimeToMedico(workTime3);
+        medico3.addWorkTimeToMedico(workTime5);
+        medico3.addWorkTimeToMedico(workTime6);
 
         workTimeRepoI.saveAll(workTimes1);
         workTimeRepoI.saveAll(workTimes2);
@@ -127,11 +128,13 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
        Consulta consulta1= new Consulta();
        consulta1.setHorario(LocalDateTime.of(2019,1,20,10,0));
-
-        consultaRepoI.save(consulta1);
-
-//       medico1.addConsutaToMedico(consulta1);
-//       paciente1.addConsutaToPaciente(consulta1);
+       Consulta consulta2= new Consulta();
+       consulta2.setHorario(LocalDateTime.of(2019,1,20,12,0));
+       Consulta consulta3= new Consulta();
+       consulta3.setHorario(LocalDateTime.of(2019,1,21,11,0));
+       consultaRepoI.save(consulta1);
+       consultaRepoI.save(consulta2);
+       consultaRepoI.save(consulta3);
 
     }
 

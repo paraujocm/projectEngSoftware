@@ -75,7 +75,7 @@ public class EspecialidadeService implements EspecialidadeServiceI {
         if(medicoOptional.isPresent()){
             Medico medico=medicoOptional.get();
 
-            medico.addEspecialidade(especialidade);
+            medico.addEspecialidadeeToMedico(especialidade);
             medicoRepoI.save(medico);
             return especialidadeRepoI.findByNome(especialidade.getNome());
         }
