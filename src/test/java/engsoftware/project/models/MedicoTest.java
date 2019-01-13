@@ -24,7 +24,6 @@ public class MedicoTest {
 
         Medico medico1= new Medico("Joao Coelho", "joao@gmail.com", "912345678", dentista);
 
-
         Set<WorkTime> workTimes1= new HashSet<>();
         WorkTime workTime1= new WorkTime();
         workTime1.setDay(DayOfWeek.MONDAY);
