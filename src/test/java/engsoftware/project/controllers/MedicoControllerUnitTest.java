@@ -4,12 +4,10 @@ package engsoftware.project.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
-import engsoftware.project.services.MedicoServiceI;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,9 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MedicoControllerUnitTest {
 
     private MockMvc mockMvc;
-
-    @Mock
-    private MedicoServiceI createMedicoServiceMock;
 
     @InjectMocks
     private MedicoController medicoController;
@@ -42,8 +37,6 @@ public class MedicoControllerUnitTest {
 
         Especialidade dentista = new Especialidade("Dentista", 30);
         Medico medico = new Medico("medico1", "medico@gmail.com", "918765432", dentista);
-        Medico expectedMedico = new Medico("medico1", "medico@gmail.com", "918765432", dentista);
-
 
         mockMvc.perform(post("/medico")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)

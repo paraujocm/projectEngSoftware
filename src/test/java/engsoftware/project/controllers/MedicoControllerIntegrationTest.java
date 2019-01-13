@@ -50,16 +50,6 @@ public class MedicoControllerIntegrationTest {
     }
 
     @Test
-    public void getAllMedico() throws Exception {
-        Iterable<Medico> medicos = medicoServiceI.getFilteredMedico(new FilterObjectMedico());
-        mvc.perform(get("/medico").contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.content().json(mapper.writeValueAsString(medicos)))
-                .andReturn();
-    }
-
-    @Test
     public void getById() throws Exception {
         Medico medico = medicoServiceI.findById(1l).get();
         mvc.perform(get("/medico/1").contentType(MediaType.APPLICATION_JSON_VALUE))
