@@ -13,7 +13,7 @@ import java.time.LocalTime;
 @Setter
 @NoArgsConstructor
 @ToString
-public class WorkTime extends BaseModel  {
+public class WorkTime extends BaseModel {
 
     @EqualsAndHashCode.Exclude
     @JsonIgnore
@@ -25,9 +25,9 @@ public class WorkTime extends BaseModel  {
     private LocalTime start;
     private LocalTime end;
 
-    public WorkTime (DayOfWeek day, LocalTime start, LocalTime end) {
-        this.day=day;
-        this.start=start;
-        this.end=end;
+    public WorkTime(DayOfWeek day, LocalTime start, LocalTime end) {
+        this.day = day;
+        this.start = start;
+        this.end = end;
     }
 }

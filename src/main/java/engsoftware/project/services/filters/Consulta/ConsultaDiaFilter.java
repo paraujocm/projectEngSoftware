@@ -6,7 +6,7 @@ import java.time.DayOfWeek;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ConsultaDiaFilter implements ConsultaFilter{
+public class ConsultaDiaFilter implements ConsultaFilter {
 
     private DayOfWeek diaToFilter;
 
@@ -16,7 +16,7 @@ public class ConsultaDiaFilter implements ConsultaFilter{
 
     @Override
     public Set<Consulta> filter(Set<Consulta> consultas) {
-        if(diaToFilter==null)return consultas;
+        if (diaToFilter == null) return consultas;
 
         return consultas.stream()
                 .filter(consulta -> consulta.getHorario().getDayOfWeek().equals(this.diaToFilter))

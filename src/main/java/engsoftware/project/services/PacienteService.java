@@ -22,23 +22,23 @@ public class PacienteService implements PacienteServiceI {
     }
 
     @Override
-    public Set<Paciente> getSetPaciente(){
-        Set<Paciente> pacientes=new HashSet<>();
-        for(Paciente paciente:this.pacienteRepoI.findAll()){
+    public Set<Paciente> getSetPaciente() {
+        Set<Paciente> pacientes = new HashSet<>();
+        for (Paciente paciente : this.pacienteRepoI.findAll()) {
             pacientes.add(paciente);
         }
         return pacientes;
     }
 
     @Override
-    public Set<Paciente> getFilteredPaciente(FilterObjectPaciente filterObjectPaciente){
-        return pacienteFilterService.filterPacientes(findAll(),filterObjectPaciente);
+    public Set<Paciente> getFilteredPaciente(FilterObjectPaciente filterObjectPaciente) {
+        return pacienteFilterService.filterPacientes(findAll(), filterObjectPaciente);
     }
 
     @Override
-    public Set<Paciente> findAll(){
-        Set<Paciente> pacientes=new HashSet<>();
-        for(Paciente paciente:this.pacienteRepoI.findAll()){
+    public Set<Paciente> findAll() {
+        Set<Paciente> pacientes = new HashSet<>();
+        for (Paciente paciente : this.pacienteRepoI.findAll()) {
             pacientes.add(paciente);
         }
         return Collections.unmodifiableSet(pacientes);
@@ -56,7 +56,7 @@ public class PacienteService implements PacienteServiceI {
     }
 
     @Override
-    public Paciente save(Paciente paciente){
+    public Paciente save(Paciente paciente) {
         return this.pacienteRepoI.save(paciente);
     }
 
@@ -68,10 +68,10 @@ public class PacienteService implements PacienteServiceI {
     }
 
     @Override
-    public Optional<Paciente> removePaciente (String nrUtenteSaude) {
-        Optional<Paciente> pacienteOptional=this.pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
-        if(pacienteOptional.isPresent()){
-            Paciente paciente= pacienteOptional.get();
+    public Optional<Paciente> removePaciente(String nrUtenteSaude) {
+        Optional<Paciente> pacienteOptional = this.pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
+        if (pacienteOptional.isPresent()) {
+            Paciente paciente = pacienteOptional.get();
 
             pacienteRepoI.delete(paciente);
             return pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);

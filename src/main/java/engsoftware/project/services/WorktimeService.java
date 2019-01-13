@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class WorktimeService implements WorkTimeServiceI{
+public class WorktimeService implements WorkTimeServiceI {
 
     private WorkTimeRepoI workTimeRepoI;
 
@@ -25,9 +25,9 @@ public class WorktimeService implements WorkTimeServiceI{
     }
 
     @Override
-    public Set<WorkTime> getSetWorkTime(){
-        Set<WorkTime> workTimes=new HashSet<>();
-        for(WorkTime workTime:this.workTimeRepoI.findAll()){
+    public Set<WorkTime> getSetWorkTime() {
+        Set<WorkTime> workTimes = new HashSet<>();
+        for (WorkTime workTime : this.workTimeRepoI.findAll()) {
             workTimes.add(workTime);
         }
         return workTimes;
@@ -36,8 +36,8 @@ public class WorktimeService implements WorkTimeServiceI{
     @Override
     public Set<WorkTime> findAll() {
 
-        Set<WorkTime> workTimes=new HashSet<>();
-        for(WorkTime workTime:this.workTimeRepoI.findAll()){
+        Set<WorkTime> workTimes = new HashSet<>();
+        for (WorkTime workTime : this.workTimeRepoI.findAll()) {
             workTimes.add(workTime);
         }
         return Collections.unmodifiableSet(workTimes);
@@ -64,15 +64,15 @@ public class WorktimeService implements WorkTimeServiceI{
     }
 
     @Override
-    public WorkTime save(WorkTime workTime){
+    public WorkTime save(WorkTime workTime) {
         return this.workTimeRepoI.save(workTime);
     }
 
     @Override
-    public Optional<WorkTime> saveWorkTime (WorkTime workTime, String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
-        if(medicoOptional.isPresent()){
-            Medico medico=medicoOptional.get();
+    public Optional<WorkTime> saveWorkTime(WorkTime workTime, String nameMedico) {
+        Optional<Medico> medicoOptional = this.medicoRepoI.findByNome(nameMedico);
+        if (medicoOptional.isPresent()) {
+            Medico medico = medicoOptional.get();
 
             medico.addWorkTimeToMedico(workTime);
             medicoRepoI.save(medico);
@@ -82,10 +82,10 @@ public class WorktimeService implements WorkTimeServiceI{
     }
 
     @Override
-    public Optional<WorkTime> removeWorktime (Long id) {
-        Optional<WorkTime> workTimeOptional=this.workTimeRepoI.findById(id);
-        if(workTimeOptional.isPresent()){
-            WorkTime workTime= workTimeOptional.get();
+    public Optional<WorkTime> removeWorktime(Long id) {
+        Optional<WorkTime> workTimeOptional = this.workTimeRepoI.findById(id);
+        if (workTimeOptional.isPresent()) {
+            WorkTime workTime = workTimeOptional.get();
 
             workTimeRepoI.delete(workTime);
             return workTimeRepoI.findById(id);

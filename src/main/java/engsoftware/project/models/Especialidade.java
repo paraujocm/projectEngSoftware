@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Especialidade extends BaseModel  {
+public class Especialidade extends BaseModel {
 
     @EqualsAndHashCode.Exclude
     @JsonIgnore
@@ -21,9 +21,9 @@ public class Especialidade extends BaseModel  {
     private String nome;
     private float preco;
 
-    public Especialidade (String nome, float preco) {
-        this.nome=nome;
-        this.preco=preco;
+    public Especialidade(String nome, float preco) {
+        this.nome = nome;
+        this.preco = preco;
     }
 
 }

@@ -17,7 +17,7 @@ public class MedicoEspecialidadeFilter implements MedicoFilter {
 
     @Override
     public Set<Medico> filter(Set<Medico> medicos) {
-        if(especialidadeToFilter==null)return medicos;
+        if (especialidadeToFilter == null) return medicos;
 
         return medicos.stream()
                 .filter(medico -> medico.getEspecialidades().equals(this.especialidadeToFilter))

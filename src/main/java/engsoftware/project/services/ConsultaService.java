@@ -79,10 +79,10 @@ public class ConsultaService implements ConsultaServiceI {
     }
 
     @Override
-    public Optional<Consulta> saveConsulta( Consulta consulta, String nrUtenteSaude, String nameMedico) {
+    public Optional<Consulta> saveConsulta(Consulta consulta, String nrUtenteSaude, String nameMedico) {
         Optional<Paciente> pacienteOptional = this.pacienteRepoI.findByNrUtenteSaude(nrUtenteSaude);
         Optional<Medico> medicoOptional = this.medicoRepoI.findByNome(nameMedico);
-        if (pacienteOptional.isPresent() && medicoOptional.isPresent())  {
+        if (pacienteOptional.isPresent() && medicoOptional.isPresent()) {
             Paciente paciente = pacienteOptional.get();
             Medico medico = medicoOptional.get();
             if (medico.addConsutaToMedico(consulta)) {
@@ -99,10 +99,10 @@ public class ConsultaService implements ConsultaServiceI {
 
 
     @Override
-    public Optional<Consulta> removeConsulta (Long id) {
-        Optional<Consulta> consultaOptional=this.consultaRepoI.findById(id);
-        if(consultaOptional.isPresent()){
-            Consulta consulta= consultaOptional.get();
+    public Optional<Consulta> removeConsulta(Long id) {
+        Optional<Consulta> consultaOptional = this.consultaRepoI.findById(id);
+        if (consultaOptional.isPresent()) {
+            Consulta consulta = consultaOptional.get();
 
             consultaRepoI.delete(consulta);
             return consultaRepoI.findById(id);

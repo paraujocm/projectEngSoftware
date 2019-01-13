@@ -13,40 +13,40 @@ import static org.junit.Assert.assertEquals;
 
 public class MedicoTest {
     @Before
-    public void setUp(){
+    public void setUp() {
 
     }
 
     @Test
-    public void testAddConsultaToMedico(){
+    public void testAddConsultaToMedico() {
 
-        Especialidade dentista= new Especialidade("Dentista", 30);
+        Especialidade dentista = new Especialidade("Dentista", 30);
 
-        Medico medico1= new Medico("Joao Coelho", "joao@gmail.com", "912345678", dentista);
+        Medico medico1 = new Medico("Joao Coelho", "joao@gmail.com", "912345678", dentista);
 
-        Set<WorkTime> workTimes1= new HashSet<>();
-        WorkTime workTime1= new WorkTime();
+        Set<WorkTime> workTimes1 = new HashSet<>();
+        WorkTime workTime1 = new WorkTime();
         workTime1.setDay(DayOfWeek.MONDAY);
-        workTime1.setStart(LocalTime.of(9,30));
+        workTime1.setStart(LocalTime.of(9, 30));
         workTime1.setEnd(LocalTime.of(16, 0));
         workTimes1.add(workTime1);
-        WorkTime workTime2= new WorkTime();
+        WorkTime workTime2 = new WorkTime();
         workTime2.setDay(DayOfWeek.WEDNESDAY);
         workTime2.setStart(LocalTime.of(13, 20));
-        workTime2.setEnd(LocalTime.of(22,0));
+        workTime2.setEnd(LocalTime.of(22, 0));
         workTimes1.add(workTime2);
         medico1.setWorkTimes(workTimes1);
 
-        Consulta consulta1= new Consulta();
-        consulta1.setHorario(LocalDateTime.of(2019,1,21,10,0));
+        Consulta consulta1 = new Consulta();
+        consulta1.setHorario(LocalDateTime.of(2019, 1, 21, 10, 0));
 
-        Consulta consulta2= new Consulta();
-        consulta2.setHorario(LocalDateTime.of(2019,1,21,10,5));
+        Consulta consulta2 = new Consulta();
+        consulta2.setHorario(LocalDateTime.of(2019, 1, 21, 10, 5));
 
-        assertEquals(0,medico1.getConsultas().size());
+        assertEquals(0, medico1.getConsultas().size());
         medico1.addConsutaToMedico(consulta1);
-        assertEquals(1,medico1.getConsultas().size());
+        assertEquals(1, medico1.getConsultas().size());
         medico1.addConsutaToMedico(consulta2);
-        assertEquals(1,medico1.getConsultas().size());
+        assertEquals(1, medico1.getConsultas().size());
     }
 }

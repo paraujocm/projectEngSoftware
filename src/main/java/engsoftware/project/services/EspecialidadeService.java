@@ -25,25 +25,25 @@ public class EspecialidadeService implements EspecialidadeServiceI {
     }
 
     @Override
-    public Set<Especialidade> getSetEspecialidade(){
-        Set<Especialidade> especialidades=new HashSet<>();
-        for(Especialidade especialidade:this.especialidadeRepoI.findAll()){
+    public Set<Especialidade> getSetEspecialidade() {
+        Set<Especialidade> especialidades = new HashSet<>();
+        for (Especialidade especialidade : this.especialidadeRepoI.findAll()) {
             especialidades.add(especialidade);
         }
         return especialidades;
     }
 
     @Override
-    public Set<Especialidade> getFilteredEspecialidade(FilterObjectEspecialidade filterObjectEspecialidade){
-        return especialidadeFilterService.filterEspecialidade(findAll(),filterObjectEspecialidade);
+    public Set<Especialidade> getFilteredEspecialidade(FilterObjectEspecialidade filterObjectEspecialidade) {
+        return especialidadeFilterService.filterEspecialidade(findAll(), filterObjectEspecialidade);
     }
 
 
     @Override
     public Set<Especialidade> findAll() {
 
-        Set<Especialidade> especialidades=new HashSet<>();
-        for(Especialidade especialidade:this.especialidadeRepoI.findAll()){
+        Set<Especialidade> especialidades = new HashSet<>();
+        for (Especialidade especialidade : this.especialidadeRepoI.findAll()) {
             especialidades.add(especialidade);
         }
         return Collections.unmodifiableSet(especialidades);
@@ -65,15 +65,15 @@ public class EspecialidadeService implements EspecialidadeServiceI {
     }
 
     @Override
-    public Especialidade save(Especialidade especialidade){
+    public Especialidade save(Especialidade especialidade) {
         return this.especialidadeRepoI.save(especialidade);
     }
 
     @Override
-    public Optional<Especialidade> saveEspecialidade (Especialidade especialidade, String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
-        if(medicoOptional.isPresent()){
-            Medico medico=medicoOptional.get();
+    public Optional<Especialidade> saveEspecialidade(Especialidade especialidade, String nameMedico) {
+        Optional<Medico> medicoOptional = this.medicoRepoI.findByNome(nameMedico);
+        if (medicoOptional.isPresent()) {
+            Medico medico = medicoOptional.get();
 
             medico.addEspecialidadeeToMedico(especialidade);
             medicoRepoI.save(medico);
@@ -84,12 +84,12 @@ public class EspecialidadeService implements EspecialidadeServiceI {
     }
 
     @Override
-    public Optional<Especialidade> removeEspecialidade (String nameEspecialidade) {
-        Optional<Especialidade> especialidadeOptional=this.especialidadeRepoI.findByNome(nameEspecialidade);
-        if(especialidadeOptional.isPresent()){
-            Especialidade especialidade= especialidadeOptional.get();
+    public Optional<Especialidade> removeEspecialidade(String nameEspecialidade) {
+        Optional<Especialidade> especialidadeOptional = this.especialidadeRepoI.findByNome(nameEspecialidade);
+        if (especialidadeOptional.isPresent()) {
+            Especialidade especialidade = especialidadeOptional.get();
 
-            Medico medico= especialidade.getMedico();
+            Medico medico = especialidade.getMedico();
             medico.removeEspecialidadeToMedico(especialidade);
             medicoRepoI.save(medico);
             especialidadeRepoI.delete(especialidade);

@@ -33,16 +33,15 @@ public class Consulta extends BaseModel {
     @OneToOne
     private Especialidade tipo;
 
-    public Consulta ( Paciente nrUtente, LocalDateTime horario,  Medico medico) {
-        this.paciente=nrUtente;
+    public Consulta(Paciente nrUtente, LocalDateTime horario, Medico medico) {
+        this.paciente = nrUtente;
         this.setHorario(horario);
-        this.medico=medico;
+        this.medico = medico;
     }
 
 
-
     public void setHorario(LocalDateTime horario) {
-        this.horario=horario;
-        this.fimExpectavel=horario.plusMinutes(30);
+        this.horario = horario;
+        this.fimExpectavel = horario.plusMinutes(30);
     }
 }

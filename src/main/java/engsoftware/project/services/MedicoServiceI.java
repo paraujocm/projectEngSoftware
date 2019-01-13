@@ -21,8 +21,8 @@ public interface MedicoServiceI {
 
     Medico save(Medico medico);
 
-    ResponseEntity<Medico> saveMedico (Medico medico);
+    ResponseEntity<Medico> saveMedico(Medico medico);
 
-    Optional<Medico> removeMedico (String nameMedico);
+    Optional<Medico> removeMedico(String nameMedico);
 
 }

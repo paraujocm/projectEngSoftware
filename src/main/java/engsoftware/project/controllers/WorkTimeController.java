@@ -17,39 +17,40 @@ public class WorkTimeController {
 
     private WorktimeService worktimeService;
 
-    private Logger logger= LoggerFactory.getLogger(ConsultaController.class);
+    private Logger logger = LoggerFactory.getLogger(ConsultaController.class);
 
     public WorkTimeController(WorktimeService worktimeService) {
         this.worktimeService = worktimeService;
     }
 
-    @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Iterable<WorkTime> getAllWorkTime(){
+    Iterable<WorkTime> getAllWorkTime() {
         return worktimeService.findAll();
     }
 
-    @RequestMapping(value="/{nameMedico}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public  @ResponseBody Iterable<WorkTime> getByMedico(@PathVariable("nameMedico") String nameMedico){
+    @RequestMapping(value = "/{nameMedico}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Iterable<WorkTime> getByMedico(@PathVariable("nameMedico") String nameMedico) {
         return worktimeService.findByMedico(nameMedico);
     }
 
 
-    @PostMapping(value = "/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WorkTime> saveWorkTime(@RequestBody WorkTime workTime, @PathVariable("nameMedico") String nameMedico){
-        logger.info(workTime.toString()+" "+nameMedico);
-        Optional<WorkTime> workTimeOptional= worktimeService.saveWorkTime(workTime, nameMedico);
-        if(workTimeOptional.isPresent()){
+    @PostMapping(value = "/{nameMedico}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WorkTime> saveWorkTime(@RequestBody WorkTime workTime, @PathVariable("nameMedico") String nameMedico) {
+        logger.info(workTime.toString() + " " + nameMedico);
+        Optional<WorkTime> workTimeOptional = worktimeService.saveWorkTime(workTime, nameMedico);
+        if (workTimeOptional.isPresent()) {
             return ResponseEntity.ok(workTimeOptional.get());
         }
         return ResponseEntity.notFound().build();
     }
 
     //remove consuta
-    @PostMapping(value = "/remove/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WorkTime> removeWorktime(@PathVariable("id") Long id){
-        Optional<WorkTime> workTimeOptional= worktimeService.removeWorktime(id);
-        if(workTimeOptional.isPresent()){
+    @PostMapping(value = "/remove/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<WorkTime> removeWorktime(@PathVariable("id") Long id) {
+        Optional<WorkTime> workTimeOptional = worktimeService.removeWorktime(id);
+        if (workTimeOptional.isPresent()) {
             return ResponseEntity.ok(workTimeOptional.get());
         }
         return ResponseEntity.notFound().build();

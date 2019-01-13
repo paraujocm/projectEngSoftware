@@ -17,12 +17,12 @@ public class MedicoHoraInicioFilter implements MedicoFilter {
 
     @Override
     public Set<Medico> filter(Set<Medico> medicos) {
-        if(horaInicioToFilter==null)return medicos;
+        if (horaInicioToFilter == null) return medicos;
 
         Set<Medico> filteredMedicos = new HashSet<>();
         for (Medico medico : medicos) {
-            for(WorkTime workTime:medico.getWorkTimes()){
-                if(workTime.getEnd().isAfter(this.horaInicioToFilter)){
+            for (WorkTime workTime : medico.getWorkTimes()) {
+                if (workTime.getEnd().isAfter(this.horaInicioToFilter)) {
                     filteredMedicos.add(medico);
                 }
             }

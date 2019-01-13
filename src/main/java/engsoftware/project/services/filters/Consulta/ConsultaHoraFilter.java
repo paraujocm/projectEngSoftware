@@ -16,7 +16,7 @@ public class ConsultaHoraFilter implements ConsultaFilter {
 
     @Override
     public Set<Consulta> filter(Set<Consulta> consultas) {
-        if(horaToFilter==null)return consultas;
+        if (horaToFilter == null) return consultas;
 
         return consultas.stream()
                 .filter(consulta -> consulta.getHorario().toLocalTime().equals(this.horaToFilter))

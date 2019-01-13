@@ -25,5 +25,5 @@ public interface EspecialidadeServiceI {
 
     Optional<Especialidade> saveEspecialidade(Especialidade especialidade, String nameMedico);
 
-    Optional<Especialidade> removeEspecialidade (String nameEspecialidade);
+    Optional<Especialidade> removeEspecialidade(String nameEspecialidade);
 }

@@ -22,36 +22,36 @@ public class ConsultaController {
         this.consultaService = consultaService;
     }
 
-    private Logger logger= LoggerFactory.getLogger(ConsultaController.class);
+    private Logger logger = LoggerFactory.getLogger(ConsultaController.class);
 
-    @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Iterable<Consulta> getAllConsulta(@ModelAttribute FilterObjectConsulta filterObjectConsulta){
+    Iterable<Consulta> getAllConsulta(@ModelAttribute FilterObjectConsulta filterObjectConsulta) {
         return consultaService.getFilteredConsulta(filterObjectConsulta);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Consulta getById(@PathVariable("id") Long id){
-        Optional<Consulta> courseDTOOptional= consultaService.findById(id);
+    Consulta getById(@PathVariable("id") Long id) {
+        Optional<Consulta> courseDTOOptional = consultaService.findById(id);
         return courseDTOOptional.orElse(null);
     }
 
-    @PostMapping(value = "/{nrUtenteSaude}/{nameMedico}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nrUtenteSaude") String nrUtenteSaude, @PathVariable("nameMedico") String nameMedico){
-        logger.info(consulta.toString()+" "+nrUtenteSaude);
-        Optional<Consulta> consultaOptional= consultaService.saveConsulta(consulta, nrUtenteSaude, nameMedico);
-        if(consultaOptional.isPresent()){
+    @PostMapping(value = "/{nrUtenteSaude}/{nameMedico}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Consulta> saveConsulta(@RequestBody Consulta consulta, @PathVariable("nrUtenteSaude") String nrUtenteSaude, @PathVariable("nameMedico") String nameMedico) {
+        logger.info(consulta.toString() + " " + nrUtenteSaude);
+        Optional<Consulta> consultaOptional = consultaService.saveConsulta(consulta, nrUtenteSaude, nameMedico);
+        if (consultaOptional.isPresent()) {
             return ResponseEntity.ok(consultaOptional.get());
         }
         return ResponseEntity.notFound().build();
     }
 
     //remove consuta
-    @PostMapping(value = "/remove/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Consulta> removeConsulta(@PathVariable("id") Long id){
-        Optional<Consulta> consultaOptional= consultaService.removeConsulta(id);
-        if(consultaOptional.isPresent()){
+    @PostMapping(value = "/remove/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Consulta> removeConsulta(@PathVariable("id") Long id) {
+        Optional<Consulta> consultaOptional = consultaService.removeConsulta(id);
+        if (consultaOptional.isPresent()) {
             return ResponseEntity.ok(consultaOptional.get());
         }
         return ResponseEntity.notFound().build();

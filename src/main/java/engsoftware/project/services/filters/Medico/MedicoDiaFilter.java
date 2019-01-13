@@ -18,11 +18,11 @@ public class MedicoDiaFilter implements MedicoFilter {
 
     @Override
     public Set<Medico> filter(Set<Medico> medicos) {
-        if(diaToFilter==null)return medicos;
-        Set<Medico> filtered=new HashSet<>();
-        for(Medico medico:medicos){
-            for(WorkTime workTime:medico.getWorkTimes()){
-                if(workTime.getDay().equals(this.diaToFilter)){
+        if (diaToFilter == null) return medicos;
+        Set<Medico> filtered = new HashSet<>();
+        for (Medico medico : medicos) {
+            for (WorkTime workTime : medico.getWorkTimes()) {
+                if (workTime.getDay().equals(this.diaToFilter)) {
                     filtered.add(medico);
                     break;
                 }

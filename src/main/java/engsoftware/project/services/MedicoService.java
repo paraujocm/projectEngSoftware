@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class MedicoService implements  MedicoServiceI{
+public class MedicoService implements MedicoServiceI {
 
     private MedicoRepoI medicoRepoI;
 
@@ -24,23 +24,23 @@ public class MedicoService implements  MedicoServiceI{
     }
 
     @Override
-    public Set<Medico> getSetMedico(){
-        Set<Medico> medicos=new HashSet<>();
-        for(Medico medico:this.medicoRepoI.findAll()){
+    public Set<Medico> getSetMedico() {
+        Set<Medico> medicos = new HashSet<>();
+        for (Medico medico : this.medicoRepoI.findAll()) {
             medicos.add(medico);
         }
         return medicos;
     }
 
     @Override
-    public Set<Medico> getFilteredMedico(FilterObjectMedico filterObjectMedico){
-        return medicoFilterService.filterMedicos(findAll(),filterObjectMedico);
+    public Set<Medico> getFilteredMedico(FilterObjectMedico filterObjectMedico) {
+        return medicoFilterService.filterMedicos(findAll(), filterObjectMedico);
     }
 
     @Override
-    public Set<Medico> findAll(){
-        Set<Medico> medicos=new HashSet<>();
-        for(Medico medico:this.medicoRepoI.findAll()){
+    public Set<Medico> findAll() {
+        Set<Medico> medicos = new HashSet<>();
+        for (Medico medico : this.medicoRepoI.findAll()) {
             medicos.add(medico);
         }
         return Collections.unmodifiableSet(medicos);
@@ -58,7 +58,7 @@ public class MedicoService implements  MedicoServiceI{
     }
 
     @Override
-    public Medico save(Medico medico){
+    public Medico save(Medico medico) {
         return this.medicoRepoI.save(medico);
     }
 
@@ -70,10 +70,10 @@ public class MedicoService implements  MedicoServiceI{
     }
 
     @Override
-    public Optional<Medico> removeMedico (String nameMedico) {
-        Optional<Medico> medicoOptional=this.medicoRepoI.findByNome(nameMedico);
-        if(medicoOptional.isPresent()){
-            Medico medico= medicoOptional.get();
+    public Optional<Medico> removeMedico(String nameMedico) {
+        Optional<Medico> medicoOptional = this.medicoRepoI.findByNome(nameMedico);
+        if (medicoOptional.isPresent()) {
+            Medico medico = medicoOptional.get();
 
             medicoRepoI.delete(medico);
             return medicoRepoI.findByNome(medico.getNome());

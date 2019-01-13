@@ -15,7 +15,7 @@ public class PacienteNrUtenteFilter implements PacienteFilter {
 
     @Override
     public Set<Paciente> filter(Set<Paciente> pacientes) {
-        if(nrUtenteToFilter==null)return pacientes;
+        if (nrUtenteToFilter == null) return pacientes;
 
         return pacientes.stream()
                 .filter(paciente -> paciente.getNrUtenteSaude().equals(this.nrUtenteToFilter))

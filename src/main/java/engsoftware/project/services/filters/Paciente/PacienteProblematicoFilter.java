@@ -11,16 +11,16 @@ public class PacienteProblematicoFilter implements PacienteFilter {
 
     public PacienteProblematicoFilter(boolean problematicoToFilter) {
 
-        this.problematicoToFilter= problematicoToFilter;
+        this.problematicoToFilter = problematicoToFilter;
     }
 
     @Override
     public Set<Paciente> filter(Set<Paciente> pacientes) {
-        if(problematicoToFilter){
+        if (problematicoToFilter) {
             return pacientes;
         }
         return pacientes.stream()
-                .filter(paciente -> paciente.isProblematico()==this.problematicoToFilter)
+                .filter(paciente -> paciente.isProblematico() == this.problematicoToFilter)
                 .collect(Collectors.toSet());
     }
 }

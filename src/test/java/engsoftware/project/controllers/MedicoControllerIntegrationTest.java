@@ -45,7 +45,7 @@ public class MedicoControllerIntegrationTest {
 
         Especialidade dentista = new Especialidade("Dentista", 30);
 
-        Medico medico = new Medico("medico1","medico@gmail.com","918765432", dentista);
+        Medico medico = new Medico("medico1", "medico@gmail.com", "918765432", dentista);
         medicoServiceI.save(medico);
     }
 

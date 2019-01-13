@@ -21,8 +21,8 @@ public class MedicoHoraFimFilter implements MedicoFilter {
 
         Set<Medico> filteredMedicos = new HashSet<>();
         for (Medico medico : medicos) {
-            for(WorkTime workTime:medico.getWorkTimes()){
-                if(workTime.getEnd().isBefore(this.horaFimToFilter)){
+            for (WorkTime workTime : medico.getWorkTimes()) {
+                if (workTime.getEnd().isBefore(this.horaFimToFilter)) {
                     filteredMedicos.add(medico);
                 }
             }

@@ -15,7 +15,7 @@ public class EspecialidadeNomeFilter implements EspecialidadeFilter {
 
     @Override
     public Set<Especialidade> filter(Set<Especialidade> especialidades) {
-        if(nomeToFilter==null)return especialidades;
+        if (nomeToFilter == null) return especialidades;
 
         return especialidades.stream()
                 .filter(especialidade -> especialidade.getNome().equals(this.nomeToFilter))

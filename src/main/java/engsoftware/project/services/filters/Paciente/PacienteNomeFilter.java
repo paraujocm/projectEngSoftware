@@ -15,7 +15,7 @@ public class PacienteNomeFilter implements PacienteFilter {
 
     @Override
     public Set<Paciente> filter(Set<Paciente> pacientes) {
-        if(nomeToFilter==null)return pacientes;
+        if (nomeToFilter == null) return pacientes;
 
         return pacientes.stream()
                 .filter(paciente -> paciente.getNome().equals(this.nomeToFilter))

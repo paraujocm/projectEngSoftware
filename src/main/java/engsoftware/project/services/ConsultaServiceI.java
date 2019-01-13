@@ -10,22 +10,22 @@ import java.util.Set;
 
 public interface ConsultaServiceI {
 
-        Set<Consulta> getSetConsulta();
+    Set<Consulta> getSetConsulta();
 
-        Set<Consulta> getFilteredConsulta(FilterObjectConsulta filterObjectConsulta);
+    Set<Consulta> getFilteredConsulta(FilterObjectConsulta filterObjectConsulta);
 
-        Set<Consulta> findAll();
+    Set<Consulta> findAll();
 
-        Optional<Consulta> findById(Long id);
+    Optional<Consulta> findById(Long id);
 
-        Optional<Medico> findByName(String nameMedico);
+    Optional<Medico> findByName(String nameMedico);
 
-        Optional<Paciente> findByNrUtenteSaude(String nrUtenteSaude);
+    Optional<Paciente> findByNrUtenteSaude(String nrUtenteSaude);
 
-        Consulta save(Consulta consulta);
+    Consulta save(Consulta consulta);
 
-        Optional<Consulta> saveConsulta( Consulta consulta, String nrUtenteSaude, String nameMedico);
+    Optional<Consulta> saveConsulta(Consulta consulta, String nrUtenteSaude, String nameMedico);
 
-        Optional<Consulta> removeConsulta (Long id);
+    Optional<Consulta> removeConsulta(Long id);
 
 }

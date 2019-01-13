@@ -14,7 +14,7 @@ public class MedicoNomeFilter implements MedicoFilter {
 
     @Override
     public Set<Medico> filter(Set<Medico> medicos) {
-        if(nomeToFilter==null)return medicos;
+        if (nomeToFilter == null) return medicos;
 
         return medicos.stream()
                 .filter(medico -> medico.getNome().equals(this.nomeToFilter))

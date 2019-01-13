@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,8 +41,8 @@ public class MedicoControllerUnitTest {
     public void testCreateClientSuccessfully() throws Exception {
 
         Especialidade dentista = new Especialidade("Dentista", 30);
-        Medico medico = new Medico("medico1","medico@gmail.com","918765432", dentista);
-        Medico expectedCourse = new Medico("medico1","medico@gmail.com","918765432", dentista);
+        Medico medico = new Medico("medico1", "medico@gmail.com", "918765432", dentista);
+        Medico expectedMedico = new Medico("medico1", "medico@gmail.com", "918765432", dentista);
 
 
         mockMvc.perform(post("/medico")

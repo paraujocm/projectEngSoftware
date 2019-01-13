@@ -16,7 +16,7 @@ public class ConsultaNrUtenteFilter implements ConsultaFilter {
 
     @Override
     public Set<Consulta> filter(Set<Consulta> consultas) {
-        if(nrUtenteToFilter ==null)return consultas;
+        if (nrUtenteToFilter == null) return consultas;
 
         return consultas.stream()
                 .filter(consulta -> consulta.getPaciente().equals(this.nrUtenteToFilter))
