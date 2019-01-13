@@ -1,6 +1,5 @@
 package engsoftware.project.models;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.time.DayOfWeek;
@@ -12,10 +11,6 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 
 public class MedicoTest {
-    @Before
-    public void setUp() {
-
-    }
 
     @Test
     public void testAddConsultaToMedico() {

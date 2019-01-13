@@ -1,22 +1,10 @@
 package engsoftware.project.models;
 
-
-import org.junit.Before;
 import org.junit.Test;
-
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.junit.Assert.assertEquals;
 
 public class PacienteTest {
-    @Before
-    public void setUp() {
-
-    }
 
     @Test
     public void testAddConsultaToPaciente() {
