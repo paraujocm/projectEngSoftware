@@ -2,7 +2,7 @@ package engsoftware.project.controllers;
 
 import engsoftware.project.models.Consulta;
 import engsoftware.project.services.ConsultaService;
-import engsoftware.project.services.filters.Consulta.FilterObjectConsulta;
+import engsoftware.project.services.filters.consulta.FilterObjectConsulta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

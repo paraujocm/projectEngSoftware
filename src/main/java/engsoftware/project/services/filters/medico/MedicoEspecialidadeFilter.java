@@ -1,4 +1,4 @@
-package engsoftware.project.services.filters.Medico;
+package engsoftware.project.services.filters.medico;
 
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;

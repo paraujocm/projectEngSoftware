@@ -1,9 +1,9 @@
 package engsoftware.project.services;
 
 import engsoftware.project.models.Especialidade;
-import engsoftware.project.services.filters.Especialidade.EspecialidadeFilter;
-import engsoftware.project.services.filters.Especialidade.EspecialidadeNomeFilter;
-import engsoftware.project.services.filters.Especialidade.FilterObjectEspecialidade;
+import engsoftware.project.services.filters.especialidade.EspecialidadeFilter;
+import engsoftware.project.services.filters.especialidade.EspecialidadeNomeFilter;
+import engsoftware.project.services.filters.especialidade.FilterObjectEspecialidade;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

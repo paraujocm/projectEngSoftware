@@ -1,4 +1,4 @@
-package engsoftware.project.services.filters.Especialidade;
+package engsoftware.project.services.filters.especialidade;
 
 import lombok.Data;
 

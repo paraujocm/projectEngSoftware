@@ -3,7 +3,7 @@ package engsoftware.project.services;
 import engsoftware.project.models.Consulta;
 import engsoftware.project.models.Medico;
 import engsoftware.project.models.Paciente;
-import engsoftware.project.services.filters.Consulta.FilterObjectConsulta;
+import engsoftware.project.services.filters.consulta.FilterObjectConsulta;
 
 import java.util.Optional;
 import java.util.Set;

@@ -2,7 +2,7 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
-import engsoftware.project.services.filters.Especialidade.FilterObjectEspecialidade;
+import engsoftware.project.services.filters.especialidade.FilterObjectEspecialidade;
 
 import java.util.Optional;
 import java.util.Set;

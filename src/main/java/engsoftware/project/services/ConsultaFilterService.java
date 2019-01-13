@@ -2,7 +2,7 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Consulta;
 import engsoftware.project.services.filters.AndFilter;
-import engsoftware.project.services.filters.Consulta.*;
+import engsoftware.project.services.filters.consulta.*;
 import engsoftware.project.services.filters.FilterI;
 import org.springframework.stereotype.Service;
 

@@ -3,7 +3,7 @@ package engsoftware.project.services;
 import engsoftware.project.models.Paciente;
 import engsoftware.project.services.filters.AndFilter;
 import engsoftware.project.services.filters.FilterI;
-import engsoftware.project.services.filters.Paciente.*;
+import engsoftware.project.services.filters.paciente.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

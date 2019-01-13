@@ -1,4 +1,4 @@
-package engsoftware.project.services.filters.Consulta;
+package engsoftware.project.services.filters.consulta;
 
 import engsoftware.project.models.*;
 import lombok.Data;

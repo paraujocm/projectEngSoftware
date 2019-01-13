@@ -2,7 +2,7 @@ package engsoftware.project.controllers;
 
 import engsoftware.project.models.Medico;
 import engsoftware.project.services.MedicoService;
-import engsoftware.project.services.filters.Medico.FilterObjectMedico;
+import engsoftware.project.services.filters.medico.FilterObjectMedico;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package engsoftware.project.services.filters.Paciente;
+package engsoftware.project.services.filters.paciente;
 
 
 import engsoftware.project.models.Paciente;

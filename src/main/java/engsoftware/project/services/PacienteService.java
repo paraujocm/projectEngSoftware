@@ -3,7 +3,7 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Paciente;
 import engsoftware.project.repositories.PacienteRepoI;
-import engsoftware.project.services.filters.Paciente.FilterObjectPaciente;
+import engsoftware.project.services.filters.paciente.FilterObjectPaciente;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package engsoftware.project.services;
 
 import engsoftware.project.models.Medico;
 import engsoftware.project.repositories.MedicoRepoI;
-import engsoftware.project.services.filters.Medico.FilterObjectMedico;
+import engsoftware.project.services.filters.medico.FilterObjectMedico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

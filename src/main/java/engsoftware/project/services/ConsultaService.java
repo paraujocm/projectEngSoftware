@@ -7,7 +7,7 @@ import engsoftware.project.models.Paciente;
 import engsoftware.project.repositories.ConsultaRepoI;
 import engsoftware.project.repositories.MedicoRepoI;
 import engsoftware.project.repositories.PacienteRepoI;
-import engsoftware.project.services.filters.Consulta.FilterObjectConsulta;
+import engsoftware.project.services.filters.consulta.FilterObjectConsulta;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;

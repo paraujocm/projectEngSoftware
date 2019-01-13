@@ -4,7 +4,7 @@ import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
 import engsoftware.project.repositories.EspecialidadeRepoI;
 import engsoftware.project.repositories.MedicoRepoI;
-import engsoftware.project.services.filters.Especialidade.FilterObjectEspecialidade;
+import engsoftware.project.services.filters.especialidade.FilterObjectEspecialidade;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

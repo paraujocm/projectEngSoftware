@@ -6,7 +6,6 @@ import engsoftware.project.ProjectApplicationTests;
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
 import engsoftware.project.services.MedicoServiceI;
-import engsoftware.project.services.filters.Medico.FilterObjectMedico;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
