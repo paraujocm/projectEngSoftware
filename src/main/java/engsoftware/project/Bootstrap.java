@@ -17,8 +17,6 @@ import java.util.Set;
 @Component
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private Logger logger= LoggerFactory.getLogger(Bootstrap.class);
-
     private EspecialidadeRepoI especialidadeRepoI;
 
     private WorkTimeRepoI workTimeRepoI;
