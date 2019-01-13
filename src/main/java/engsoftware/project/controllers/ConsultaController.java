@@ -16,13 +16,13 @@ import java.util.Optional;
 @RequestMapping("/consulta")
 public class ConsultaController {
 
+    private Logger logger = LoggerFactory.getLogger(ConsultaController.class);
+
     private ConsultaService consultaService;
 
     public ConsultaController(ConsultaService consultaService) {
         this.consultaService = consultaService;
     }
-
-    private Logger logger = LoggerFactory.getLogger(ConsultaController.class);
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody

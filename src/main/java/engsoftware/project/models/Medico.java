@@ -94,14 +94,10 @@ public class Medico extends BaseModel {
 
     private boolean trabalha(LocalDateTime dataConsulta) {
         for (WorkTime horarioActual : this.getWorkTimes()) {
-            if (horarioActual.getDay().equals(dataConsulta.getDayOfWeek())) {
-                if (horarioActual.getStart().isBefore(dataConsulta.toLocalTime())) {
-                    if (horarioActual.getEnd().isAfter(dataConsulta.toLocalTime())) {
+            if (horarioActual.getDay().equals(dataConsulta.getDayOfWeek()) && horarioActual.getStart().isBefore(dataConsulta.toLocalTime()) && horarioActual.getEnd().isAfter(dataConsulta.toLocalTime()) ) {
                         return true;
                     }
-                }
             }
-        }
         return false;
     }
 

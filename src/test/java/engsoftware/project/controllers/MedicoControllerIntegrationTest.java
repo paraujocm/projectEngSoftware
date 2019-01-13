@@ -1,7 +1,5 @@
 package engsoftware.project.controllers;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import engsoftware.project.ProjectApplicationTests;
 import engsoftware.project.models.Especialidade;
 import engsoftware.project.models.Medico;
@@ -36,8 +34,6 @@ public class MedicoControllerIntegrationTest {
     @Autowired
     private MedicoServiceI medicoServiceI;
 
-    @Autowired
-    ObjectMapper mapper;
 
     @Before
     public void setUp() {
